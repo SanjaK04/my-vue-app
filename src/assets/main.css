@@ -44,10 +44,12 @@ body {
 
 .product-dispaly {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
   min-height: calc(100vh - 60px); /* Oduzmi visinu navbar-a */
   padding: 20px;
+  gap: 20px;
 }
 
 
@@ -57,8 +59,8 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   overflow: hidden;
-  max-width: 800px;
-  width: 100%;
+  width: 800px;
+  height: 250px;
 }
 
 
