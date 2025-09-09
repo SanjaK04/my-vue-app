@@ -43,9 +43,9 @@ const addToCart = (product) => product.cart += 1
 <template>
 
 <div class="nav-bar">
-   <button class="nav-button">Ull</button>
-   <button class="nav-button">Bomull</button>
-   <button class="nav-button">Sport</button>
+   <button class="nav-button">Mysstrumporna</button>
+   <button class="nav-button">Sockvännen</button>
+   <button class="nav-button">Färgfesten</button>
 </div>
 
  <div class="product-dispaly">        
