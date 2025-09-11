@@ -1,7 +1,8 @@
 <template>
   <div>
-   
-    <Hero :hero="hero"></Hero>
+    <Navbar />
+
+     <Hero :hero="hero"></Hero>
 
     <div class="product-display">
       <ProductCard
@@ -13,15 +14,18 @@
     </div>
 
     <Cart :products="products" />
+    <Footer :footer="footer"></Footer>/>
 
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import Navbar from '../components/Navbar.vue'
 import Hero from '../components/Hero.vue'
 import Cart from '../components/Cart.vue'
 import ProductCard from '../components/ProductCard.vue'
+import Footer from '../components/Footer.vue'
 
 
 import greenSocks from '../assets/images/green_socks.jpg'
