@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Navbar />
+   
+    <Hero :hero="hero"></Hero>
 
     <div class="product-display">
       <ProductCard
@@ -10,13 +11,18 @@
         :addToCart="addToCart"
       />
     </div>
+
+    <Cart :products="products" />
+
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import Navbar from './components/Navbar.vue'
-import ProductCard from './components/ProductCard.vue'
+import Hero from '../components/Hero.vue'
+import Cart from '../components/Cart.vue'
+import ProductCard from '../components/ProductCard.vue'
+
 
 import greenSocks from '../assets/images/green_socks.jpg'
 import blueSocks from '../assets/images/blue_socks.jpg'
@@ -38,11 +44,6 @@ const addToCart = (product) => {
 </script>
 
 <style scoped>
-.product-display {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-}
+
 </style>
 

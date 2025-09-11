@@ -26,20 +26,5 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.product-container {
-  display: flex;
-  gap: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 8px;
-}
-.product-image img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-}
-.cart-button { margin-top: 10px; }
-.in-stock { color: green; }
-.almost-sold-out { color: orange; }
-.out-of-stock { color: red; }
+
 </style>

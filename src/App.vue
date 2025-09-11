@@ -1,12 +1,17 @@
 
-
 <template>
-  <router-view />       <!-- ovdje će biti Home.vue -->
+  <div id="app">
+    <Navbar />              <!-- uvijek na vrhu -->
+    <router-view />         <!-- ovdje se prikazuje sadržaj svake stranice -->
+    <Footer />              <!-- uvijek na dnu -->
+  </div>
 </template>
 
 <script setup>
-                // ništa više nije potrebno
+import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer.vue'
 </script>
+
 
 <style>
 
