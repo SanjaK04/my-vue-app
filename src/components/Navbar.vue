@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-           // Ovdje možemo kasnije dodati navigaciju koristeći router-link
+          
 </script>
 
 <style scoped>

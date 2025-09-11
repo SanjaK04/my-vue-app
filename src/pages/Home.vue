@@ -13,7 +13,7 @@
       />
     </div>
 
-    <Cart :products="products" />
+    <Cart :products="products"></Cart>/>
     <Footer :footer="footer"></Footer>/>
 
   </div>
