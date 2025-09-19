@@ -1,6 +1,7 @@
 
 
 <template>
+   <Navbar /> 
   <router-view />       <!-- ovdje će biti Home.vue -->
 </template>
 

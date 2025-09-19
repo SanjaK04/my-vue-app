@@ -8,7 +8,15 @@ const routes = [
     name: 'Home',
     component: Home
   },
-                    // ovdje kasnije možeš dodati pamuk, vuna, sport rute
+                
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
+  }
+  
+  
+  // ovdje kasnije možeš dodati pamuk, vuna, sprt
 ]
 
 const router = createRouter({
