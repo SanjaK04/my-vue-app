@@ -207,6 +207,38 @@ body {
   justify-content:space-between;
   
 }
+.product-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.detail-badge {
+  background-color: #f0f7f4;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+
+.product-variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.variant-badge {
+  background-color: #d0f0d6;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
 
 .product-info {
   display: flex;
@@ -330,8 +362,13 @@ body {
     padding: 15px;
   }
 
-  .cart-button{
+ .cart-button {
     width: 30%;
     padding: 3px;
+    background-color: #4CAF50;
+  }
+
+  .cart-button:hover {
+    background-color: #45a049; 
   }
 }
