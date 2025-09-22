@@ -1,8 +1,11 @@
 <template>
+
+  <Navbar />
+
   <div class="mysstrumpa-page">
     <section class="hero">
-      <h1>Dobrodošli u svijet udobnih i šarenih čarapa!</h1>
-      <p>Otkrijte našu kolekciju čarapa koje će obogatiti vaš dan.</p>
+      <h1>Welcome to the world of comfortable and colorful socks!</h1>
+      <p>Discover our collection of socks that will brighten your day.</p>
     </section>
 
     <section class="product-gallery">
@@ -11,35 +14,43 @@
         <h3>{{ product.name }}</h3>
         <p>{{ product.description }}</p>
         <p class="price">{{ product.price }} SEK</p>
-        <button @click="addToCart(product)">Dodaj u košaricu</button>
+        <button @click="addToCart(product)">Add to cart</button>
       </div>
     </section>
+
+    <Footer />
+    
   </div>
 </template>
 
 <script setup>
+import Navbar from '@/components/Navbar.vue';
 import { ref } from 'vue';
+import pinkSocks from '../assets/images/pink-socks.jpg'
+import textSocks from '../assets/images/text-socks.jpg'
+import Footer from '@/components/Footer.vue';
 
-const products = ref([
+
+const products = ref([ 
   {
     id: 1,
-    name: 'Zelene čarape',
-    image: 'https://pixabay.com/get/ea30b40d2cf11c22d2524518b7484f91fe76e6d004b014459cf0c1_640.png',
-    description: 'Udobne pamuk čarape u zelenoj boji.',
+    name: 'Pink socks',
+    image: pinkSocks,
+    description: 'Comfortable cotton socks in green.',
     price: 49
   },
   {
     id: 2,
-    name: 'Plave čarape',
-    image: 'https://pixabay.com/get/ea30b40d2cf11c22d2524518b7484f91fe76e6d004b014459cf0c1_640.png',
-    description: 'Elegantne plave čarape za svaki dan.',
+    name: 'Text socks',
+    image: textSocks,
+    description: 'Elegant blue socks for everyday wear.',
     price: 59
   },
-  // Dodaj ostale proizvode prema potrebi
+                                 // Dodaj ostale proizvode prema potrebi
 ]);
 
 const addToCart = (product) => {
-  console.log(`${product.name} dodano u košaricu.`);
+  console.log(`${product.name} added to cart`);
 };
 </script>
 
