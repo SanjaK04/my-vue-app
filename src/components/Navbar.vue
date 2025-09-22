@@ -1,6 +1,7 @@
 <template>
   <div class="navbar">
-           
+          
+    <router-link to="/" class="navbutton">Home</router-link>
     <router-link to="/mysstrumpa" class="navbutton">Mysstrumpa</router-link>
     <router-link to="/sockvännen" class="navbutton">Sockvännen</router-link>
     <router-link to="/färgfesten" class="navbutton">Färgfesten</router-link>

@@ -1,4 +1,5 @@
 <template>
+  <div class="mysstrumpa-wrapper">
 
   <Navbar />
 
@@ -17,6 +18,7 @@
         <button @click="addToCart(product)">Add to cart</button>
       </div>
     </section>
+  </div>
 
     <Footer />
     
@@ -29,6 +31,7 @@ import { ref } from 'vue';
 import pinkSocks from '../assets/images/pink-socks.jpg'
 import textSocks from '../assets/images/text-socks.jpg'
 import Footer from '@/components/Footer.vue';
+import livelySocks from '../assets/images/lively-socks.jpg'
 
 
 const products = ref([ 
@@ -36,16 +39,26 @@ const products = ref([
     id: 1,
     name: 'Pink socks',
     image: pinkSocks,
-    description: 'Comfortable cotton socks in green.',
+    description: 'Comfortable cotton socks in pink.',
     price: 49
   },
   {
     id: 2,
     name: 'Text socks',
     image: textSocks,
-    description: 'Elegant blue socks for everyday wear.',
+    description: 'Socks for everyday wear.',
     price: 59
   },
+
+  {
+    id: 3,
+    name: 'Crazy socks',
+    image: livelySocks,
+    description: 'Brighten up your day.',
+    price: 70
+  },
+
+ 
                                  // Dodaj ostale proizvode prema potrebi
 ]);
 
@@ -55,81 +68,5 @@ const addToCart = (product) => {
 </script>
 
 <style scoped>
-.mysstrumpa-page {
-  font-family: 'Arial', sans-serif;
-  margin: 20px;
-}
 
-.hero {
-  text-align: center;
-  background-color: #f0f0f0;
-  padding: 50px 20px;
-  border-radius: 10px;
-  margin-bottom: 30px;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  color: #333;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  color: #666;
-}
-
-.product-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.product-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  width: 250px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.product-image {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-.product-card h3 {
-  font-size: 1.5rem;
-  color: #333;
-  margin: 10px 0;
-}
-
-.product-card p {
-  font-size: 1rem;
-  color: #666;
-}
-
-.price {
-  font-size: 1.2rem;
-  color: #000;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-button:hover {
-  background-color: #45a049;
-}
 </style>

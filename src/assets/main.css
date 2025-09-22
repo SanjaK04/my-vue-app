@@ -30,7 +30,7 @@ body {
   padding: 0 40px;
   gap: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  position: sticky;   /* ostaje gore dok skrolaš */
+  position: sticky;                   /* ostaje gore dok skrolaš */
   top: 0;
   z-index: 100;
 }
@@ -59,6 +59,64 @@ body {
   transform: translateY(0);
   box-shadow: none;
 }
+
+
+
+.sockvännen-page .product-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.sockvännen-page .product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 250px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.sockvännen-page .product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.sockvännen-page .product-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.sockvännen-page .product-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.sockvännen-page .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.sockvännen-page button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sockvännen-page button:hover {
+  background-color: #45a049;
+}
+
+
  .search-container {
   margin-left: auto;
   margin-right: 180px; 
@@ -113,13 +171,13 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-  flex-wrap: wrap;           /* da se prilagodi manjem ekranu */
+  flex-wrap: wrap;                /* da se prilagodi manjem ekranu */
 }
 
 .search-filter .filter-group {
   display: flex;
   align-items: center;
-  gap: 10px;                 /* razmak između labela i selecta */
+  gap: 10px;                     /* razmak između labela i selecta */
 }
 
 .search-filter .filter-group label {
@@ -194,7 +252,7 @@ body {
 
 .product-container {
   display: flex;
-  align-items: stretch;       /* slika i tekst iste visine */
+  align-items: stretch;           /* slika i tekst iste visine */
   background-color: white;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -247,7 +305,7 @@ body {
 }
 
 .cart {
-  position: fixed;    /* ostaje u gornjem desnom kutu čak i kad scrollaš */
+  position: fixed;                 /* ostaje u gornjem desnom kutu čak i kad scrollaš */
   top: 10px;          
   right: 20px;        
   background-color: #4CAF50;
@@ -338,7 +396,6 @@ body {
 }
 
 
-
 .footer {
   background-color: #4CAF50;   /* ista zelena kao navbar/hero highlight */
   color: white;
@@ -380,7 +437,7 @@ body {
 }
 
 .social-links a:hover {
-  color: #d4ffd4;  /* lagana svijetla nijansa za hover */
+  color: #d4ffd4;            /* lagana svijetla nijansa za hover */
 }
 
 .footer-bottom {
@@ -389,6 +446,232 @@ body {
   font-size: 0.9rem;
   color: #e0e0e0;
 }
+
+.mysstrumpa-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.mysstrumpa-page {
+  flex: 1;
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+}
+
+.mysstrumpa-page .hero {
+  text-align: center;
+  background-color: #f0f0f0;
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.mysstrumpa-page .hero h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.mysstrumpa-page .hero p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.mysstrumpa-page .product-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.mysstrumpa-page .product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 250px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mysstrumpa-page .product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.mysstrumpa-page .product-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.mysstrumpa-page .product-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.mysstrumpa-page .price {
+  font-size: 1.2rem;
+  color: #000;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.mysstrumpa-page button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.mysstrumpa-page button:hover {
+  background-color: #45a049;
+}
+
+.sockvännen-hero {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  padding: 80px 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6dd5fa, #2980b9); /* hladni zimski gradient */
+  overflow: hidden;
+}
+
+.sockvännen-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/snowflakes.png'); /* lagane pahulje preko heroja */
+  background-repeat: repeat;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sockvännen-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+}
+
+.sockvännen-hero p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  line-height: 1.5;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+.sockvännen-hero .shop-now {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #ff6b6b; /* kontrastna toplija boja */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sockvännen-hero .shop-now:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+
+
+.sockvännen-page {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+}
+
+.sockvännen-page .hero {
+  text-align: center;
+  background-color: #f0f0f0;
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.sockvännen-page .hero h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.sockvännen-page .hero p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.sockvännen-page .product-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.sockvännen-page .product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 250px;        /* fiksna širina kartice */
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.sockvännen-page .product-card img {
+  width: 100%;
+  height: auto;       /* zadržava proporcije */
+  border-radius: 5px;
+}
+
+.sockvännen-page .product-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.sockvännen-page .product-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.sockvännen-page .price {
+  font-size: 1.2rem;
+  color: #000;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.sockvännen-page button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sockvännen-page button:hover {
+  background-color: #45a049;
+}
+
 
 
 @media (max-width: 600px) {

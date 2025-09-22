@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from './pages/Home.vue'
 import Search from './components/Search.vue'
 import Mysstrumpa from './pages/Mysstrumpa.vue'
+import Sockvännen from './pages/Sockvännen.vue'
+
+
 
 const routes = [
   {
@@ -20,6 +23,12 @@ const routes = [
     path: '/mysstrumpa',
     name: 'Mysstrrumpa',
     component: Mysstrumpa
+  },
+
+  {
+    path: '/sockvännen',
+    name: 'Sockvännen',
+    component: Sockvännen
   }
   
   // ovdje kasnije možeš dodati pamuk, vuna, sprt
