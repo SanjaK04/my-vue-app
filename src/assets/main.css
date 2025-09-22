@@ -14,8 +14,8 @@ body {
   background-size: cover;     
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: fixed;   /* slika ostaje fiksna dok scrollaš */
-  background-color: #e8f5e9;    /* fallback boja ako se slika ne učita */  
+  background-attachment: fixed;            /* slika ostaje fiksna dok scrollaš */
+  background-color: #e8f5e9;            /* fallback boja ako se slika ne učita */  
   
 }
 
@@ -86,7 +86,7 @@ body {
   justify-content: center;
   padding: 6% 5%;
   color: white;
-  text-align: center;   /* sve linije centrirane */
+  text-align: center;   
 }
 
 .hero h1 {
@@ -101,6 +101,83 @@ body {
   font-size: 1.25rem;
   max-width: 600px;
   line-height: 1.6;
+}
+
+.search-filter {
+  background-color: white;
+  padding: 20px 25px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: 40px auto 20px 20px;            /* više lijevo */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;           /* da se prilagodi manjem ekranu */
+}
+
+.search-filter .filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;                 /* razmak između labela i selecta */
+}
+
+.search-filter .filter-group label {
+  min-width: 70px;    
+  font-weight: 500;
+  color: #333;
+}
+
+.search-filter form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.search-filter input[type="text"],
+.search-filter select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  min-width: 150px;             /* svi elementi imaju minimum širinu */
+}
+
+.search-filter input[type="text"]:focus,
+.search-filter select:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+}
+
+.search-filter label {
+  font-weight: 500;
+  color: #333;
+  min-width: 70px;
+}
+
+.search-filter button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  height: 42px;
+}
+
+.search-filter button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.search-filter button:active {
+  transform: translateY(0);
 }
 
 
@@ -315,6 +392,29 @@ body {
 
 
 @media (max-width: 600px) {
+
+   .search-filter {
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 100%;
+
+  }
+
+   .search-filter form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-filter input[type="text"],
+  .search-filter select {
+    width: 100%;
+  }
+
+  .search-filter button {
+    width: 100%;
+  }
+
   .product-container {
     flex-direction: column;
     width: 100%;
