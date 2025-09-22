@@ -15,6 +15,8 @@
 </template>
 
 <script setup>
+
+
 import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 
@@ -31,6 +33,7 @@ const products = [
 
 const searchResults = computed(() => {                     // computed lista filtriranih proizvoda prema unosu
   if (!searchQuery.value) return []
+
   return products.filter(p =>
     p.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
@@ -39,6 +42,7 @@ const searchResults = computed(() => {                     // computed lista fil
                                                          
 const router = useRouter()                               // opcionalno: funkcija za redirect na search rutu
 function doSearch() {
+
   if (searchQuery.value.trim() !== "") {
     router.push({ path: "/search", query: { q: searchQuery.value } })
   }

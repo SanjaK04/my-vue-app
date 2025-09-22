@@ -46,28 +46,34 @@ const selectedMaterial = ref("")
 
 
 const availableColors = computed(() => {
-  const items = props.items || []
-  const s = new Set(items.map(i => i.color).filter(Boolean))
-  return Array.from(s).sort()
+    const items = props.items || []
+     const s = new Set(items.map(i => i.color).filter(Boolean))
+
+     return Array.from(s).sort()
 })
 
 const availableMaterials = computed(() => {
-  const items = props.items || []
-  const s = new Set(items.map(i => i.material).filter(Boolean))
+    const items = props.items || []
+     const s = new Set(items.map(i => i.material).filter(Boolean))
+
   return Array.from(s).sort()
 })
 
 
 const filteredItems = computed(() => {
-  const itemsList = props.items || []
+   const itemsList = props.items || []
   const q = query.value.trim().toLowerCase()
+
   return itemsList.filter(item => {
     const matchesQuery =
       !q || (item.name && item.name.toLowerCase().includes(q))
+
     const matchesColor =
       !selectedColor.value || item.color === selectedColor.value
+
     const matchesMaterial =
       !selectedMaterial.value || item.material === selectedMaterial.value
+
     return matchesQuery && matchesColor && matchesMaterial
   })
 })
@@ -78,8 +84,11 @@ watch(filteredItems, (val) => {
 }, { immediate: true })
 
 function resetFilters() {
+
   query.value = ""
   selectedColor.value = ""
   selectedMaterial.value = ""
 }
+
+
 </script>
