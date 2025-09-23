@@ -3,6 +3,12 @@
 
   <Navbar />
 
+  <section class="sockvännen-hero">
+     <h1>Keep Your Feet Warm This Winter!</h1>
+                  <p>Discover our cozy socks collection and enjoy comfort all season long.</p>
+                  <button class="shop-now">Shop Now</button>
+  </section>
+
   <div class="sockvännen-page">
     <section class="carousel-container">
 
@@ -10,9 +16,8 @@
       <Slide v-for="(slide, index) in slides" :key="index">
       <div class="carousel-slide" :style="{ backgroundImage: `url(${slide.image})`}">
           <div class="carousel-content">
-                  <h1>Keep Your Feet Warm This Winter!</h1>
-                  <p>Discover our cozy socks collection and enjoy comfort all season long.</p>
-                  <button class="shop-now">Shop Now</button>
+                 <h2>{{ slide.title }}</h2>
+                 <p>{{ slide.text }}</p>
              </div> 
           </div>
        </Slide>
@@ -25,8 +30,8 @@
 
 
     <section class="product-gallery">
-      <div v-for="product in products" :key="product.id" class="product-card">
-        <img :src="product.image" :alt="product.name" class="product-image" />
+      <div v-for="product in products" :key="product.id" class="shop-card">
+        <img :src="product.photo" :alt="product.name" class="product-photo" />
         <h3>{{ product.name }}</h3>
         <p>{{ product.description }}</p>
         <p class="price">{{ product.price }} SEK</p>
@@ -52,7 +57,9 @@ import chillChasersSocks from '../assets/images/chill-chasers-socks.jpg'
 import joyfulJumpsSocks from '../assets/images/joyful-jumps-socks.jpg'
 import goldenStitchesSocks from '../assets/images/golden-stitches-socks.jpg'
 import winterSocks1 from '../assets/images/winter-socks1.jpg'
-
+import winterSocks2 from '../assets/images/winter-socks2.jpg'
+import winterShoes1 from '../assets/images/winter-shoes1.jpg'
+import winterShoes2 from '../assets/images/winter-shoes2.jpg'
 
 import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
@@ -66,15 +73,22 @@ const slides = [
   },
 
   {
-    image: warmHugSocks,
+    image:  winterShoes1,
+    title: 'Elegant Warmth',
+    text: 'Golden details for winter nights.'
+  },
+
+   {
+    image: winterSocks2,
     title: 'New Collection',
-    text: 'Fresh designs just arrived'
+    text: 'Fresh designs just arrived.'
   },
 
   {
-    image: goldenStitchesSocks,
-    title: 'Elegant Warmth',
-    text: 'Golden details for winter nights'
+    image: winterShoes2,
+    title: 'Rainy Cold Days',
+    text: 'Keeping your feet warm and dry on cold and rainy days.'
+
   }
 ]
 
@@ -83,7 +97,7 @@ const products = ref([
 {
     id: 1,
     name: 'Cozy socks',
-    image: cozySocks,
+    photo: cozySocks,
     description: 'Perfect for keeping your feet comfortable all day long.',
     price: 150
 },
@@ -91,7 +105,7 @@ const products = ref([
 {
     id: 2,
     name: 'Warm hug',
-    image: warmHugSocks,
+    photo: warmHugSocks,
     description: 'Cozy pairs that wrap your feet in gentle warmth and comfort.',
     price: 300
 },
@@ -100,7 +114,7 @@ const products = ref([
 {
    id: 3,
    name: 'Chill chasers',
-   image: chillChasersSocks,
+   photo: chillChasersSocks,
    description: 'Soft and cozy socks perfect for relaxing and unwinding.',
    price:230
 },
@@ -108,7 +122,7 @@ const products = ref([
 {
     id: 4,
     name: 'Joyful jumps',
-    image: joyfulJumpsSocks,
+    photo: joyfulJumpsSocks,
     description: 'Keep your feet warm while adding a playful bounce to every step.',
     price: 320
 
@@ -117,7 +131,7 @@ const products = ref([
 {
     id: 5,
     name: 'Golden stitches',
-    image: goldenStitchesSocks,
+    photo: goldenStitchesSocks,
     description: 'Elegant warm socks with golden stitching, made for romantic evenings and chilly winter nights. ',
     price: 310
 
@@ -138,13 +152,16 @@ const addToCart = (product) => {
   background: url('@/assets/images/winter-background2.jpg') no-repeat center center;
   background-size: cover;
   padding: 40px 0;
+  border-radius: 16px;
 }
 
 
 .carousel-slide {
   height: 50vh;
+  width: 40%;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,4 +212,51 @@ const addToCart = (product) => {
   background: linear-gradient(135deg, #f76707, #e03131);
 }
 
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);                    /* 3 kartice u prvom redu */
+  gap: 20px;
+}
+
+.product-gallery .shop-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+}
+
+.product-gallery .shop-card img {
+  width: 100%;
+  height: 250px;                                        /* iste visine za prve tri kartice */
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+                                                    /*donji red za vece kartice */
+.product-gallery .shop-card:nth-child(n+4) {
+  grid-column: span 2;                             /* zauzimaju dva stupca */
+}
+
+.product-gallery .shop-card:nth-child(n+4) img {
+  height: 300px;                                   /* veća visina za donji red */
+}
+
+
+.shop-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 15px;
+}
+
+.product-photo {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+}
 </style>
