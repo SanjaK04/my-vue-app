@@ -397,7 +397,7 @@ body {
 
 
 .footer {
-  background-color: #4CAF50;   /* ista zelena kao navbar/hero highlight */
+  background-color: #4CAF50;          /* ista zelena kao navbar/hero highlight */
   color: white;
   padding: 40px 20px 20px 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -437,7 +437,7 @@ body {
 }
 
 .social-links a:hover {
-  color: #d4ffd4;            /* lagana svijetla nijansa za hover */
+  color: #d4ffd4;               /* lagana svijetla nijansa za hover */
 }
 
 .footer-bottom {
@@ -539,7 +539,7 @@ body {
   color: #fff;
   padding: 80px 20px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #6dd5fa, #2980b9); /* hladni zimski gradient */
+  background: linear-gradient(135deg, #6dd5fa, #2980b9);      /* hladni zimski gradient */
   overflow: hidden;
 }
 
@@ -550,7 +550,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/images/snowflakes.png'); /* lagane pahulje preko heroja */
+  background-image: url('../assets/images/snowflakes.png');      /* lagane pahulje preko heroja */
   background-repeat: repeat;
   opacity: 0.15;
   pointer-events: none;
@@ -580,7 +580,7 @@ body {
   padding: 12px 28px;
   font-size: 1rem;
   font-weight: 600;
-  background-color: #ff6b6b; /* kontrastna toplija boja */
+  background-color: #ff6b6b;              /* kontrastna toplija boja */
   border: none;
   border-radius: 8px;
   color: white;
@@ -629,7 +629,7 @@ body {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
-  width: 250px;        /* fiksna širina kartice */
+  width: 250px;                /* fiksna širina kartice */
   padding: 20px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -637,7 +637,7 @@ body {
 
 .sockvännen-page .product-card img {
   width: 100%;
-  height: auto;       /* zadržava proporcije */
+  height: auto;              /* zadržava proporcije */
   border-radius: 5px;
 }
 
@@ -734,7 +734,7 @@ body {
   .product-container {
     flex-direction: row;
     width: 100%;
-    height: 250px; /* ista visina kao na desktopu */
+    height: 250px;        /* ista visina kao na desktopu */
   }
 
   .product-image,
