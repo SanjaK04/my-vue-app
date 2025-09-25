@@ -61,62 +61,6 @@ body {
 }
 
 
-
-.sockvännen-page .product-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.sockvännen-page .product-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  width: 250px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.sockvännen-page .product-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-.sockvännen-page .product-card h3 {
-  font-size: 1.5rem;
-  color: #333;
-  margin: 10px 0;
-}
-
-.sockvännen-page .product-card p {
-  font-size: 1rem;
-  color: #666;
-}
-
-.sockvännen-page .price {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.sockvännen-page button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.sockvännen-page button:hover {
-  background-color: #45a049;
-}
-
-
  .search-container {
   margin-left: auto;
   margin-right: 180px; 
@@ -533,13 +477,14 @@ body {
   background-color: #45a049;
 }
 
+
 .sockvännen-hero {
   position: relative;
   text-align: center;
   color: #fff;
   padding: 80px 20px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #2F4F4F, #1E4D3B);      /* hladni zimski gradient */
+  background: linear-gradient(135deg, #2f4f4f, #1e4d3b);      /* hladni zimski gradient */
   overflow: hidden;
 }
 
@@ -593,8 +538,6 @@ body {
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
-
-
 .sockvännen-page {
   font-family: 'Arial', sans-serif;
   margin: 20px;
@@ -623,13 +566,14 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .sockvännen-page .product-card {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
-  width: 250px;                /* fiksna širina kartice */
+  width: 250px;                
   padding: 20px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -637,7 +581,7 @@ body {
 
 .sockvännen-page .product-card img {
   width: 100%;
-  height: auto;              /* zadržava proporcije */
+  height: auto;              
   border-radius: 5px;
 }
 
@@ -671,6 +615,7 @@ body {
 .sockvännen-page button:hover {
   background-color: #45a049;
 }
+
 
 
 

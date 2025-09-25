@@ -2,6 +2,7 @@
   <div class="mysstrumpa-wrapper">
 
   <Navbar />
+  <Cart />
 
   <div class="mysstrumpa-page">
     <section class="hero">
@@ -27,6 +28,7 @@
 
 <script setup>
 import Navbar from '@/components/Navbar.vue';
+import Cart from '../components/Cart.vue'
 import { ref } from 'vue';
 import pinkSocks from '../assets/images/pink-socks.jpg'
 import textSocks from '../assets/images/text-socks.jpg'

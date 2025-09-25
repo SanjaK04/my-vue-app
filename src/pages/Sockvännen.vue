@@ -2,6 +2,7 @@
   <div class="sockvännen-wrapper">
 
   <Navbar />
+  <Cart />
 
   <section class="sockvännen-hero">
      <h1>Keep Your Feet Warm This Winter!</h1>
@@ -28,6 +29,44 @@
     </Carousel>
     </section>
 
+    <section class="highlight-section">
+      <div class="highlight-content">
+        <h2>Best seller</h2>
+        <p>Check out our most popular cozy socks and winter essentials! Each pair is carefully designed to keep your feet warm and comfortable, no matter how cold it gets outside. From soft wool blends to stylish patterns, we have something for every taste and occasion. Our winter essentials also include scarves, mittens, and slippers, making sure you’re covered from head to toe. By subscribing to our newsletter, you’ll receive exclusive offers that aren’t available anywhere else. 
+           Don’t miss out—subscribe today and make every winter day warm, stylish, and comfortable!</p>
+        <button class="highlight-cta" @click="showModal = true">Subscribe now</button>
+      </div>
+ 
+
+    
+    <div v-if="showModal" class="modal-overlay" @click.self="showModal = false">
+      <div class="modal-content">
+        <h3>Subscribe to our newsletter</h3>
+        <p>Enter your email address to receive our top sellers, exclusive deals, and cozy tips straight to your inbox.</p>
+        <input type="email" placeholder="Your email" v-model="email" />
+        <button @click="subscribe">Subscribe</button> 
+        <button class="modal-close" @click="showModal = false">&times;</button>
+      
+      </div>
+    </div>
+</section>
+
+
+<section class="blog-section">
+  <h2>From Our Blog</h2>
+  <div class="blog-cards">
+    <div class="blog-card" v-for="(post, index) in blogPosts" :key="index">
+      <img :src="post.image" :alt="post.title" />
+      <div class="blog-content">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.excerpt }}</p>
+        <button class="blog-cta">Read More</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
     <section class="product-gallery">
       <div v-for="product in products" :key="product.id" class="shop-card">
@@ -49,6 +88,7 @@
 <script setup>
 
 import Navbar from '@/components/Navbar.vue';
+import Cart from '../components/Cart.vue';
 import { ref } from 'vue';
 import Footer from '@/components/Footer.vue';
 import cozySocks from '../assets/images/cozy-socks.jpg'
@@ -60,6 +100,12 @@ import winterSocks1 from '../assets/images/winter-socks1.jpg'
 import winterSocks2 from '../assets/images/winter-socks2.jpg'
 import winterShoes1 from '../assets/images/winter-shoes1.jpg'
 import winterShoes2 from '../assets/images/winter-shoes2.jpg'
+import winterBlog4 from '../assets/images/winter-blog4.jpg'
+import winterBlog2 from '../assets/images/winter-blog2.jpg'
+import autumnBlog1 from '../assets/images/autumn-blog1.jpg'  
+import blogSki from '../assets/images/blog-ski.jpg'
+import winterBlog3 from '../assets/images/winter-blog3.jpg'
+import blogChristmas from '../assets/images/blog-christmas.jpg'
 
 import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
@@ -91,6 +137,57 @@ const slides = [
 
   }
 ]
+
+const showModal = ref(false);
+const email = ref('');
+
+const subscribe = () => {
+  if(email.value) {
+    alert(`Thanks' ${email.value} is now subscribed`);
+    email.value = '';
+    showModal.value = false;
+
+  } else {
+    alert(`Please enter a valid email adress`);
+  }
+  
+}
+
+
+const blogPosts = [
+  {
+  title: "5 Tips to Keep Your Feet Warm This Winter",
+  excerpt: "Discover simple tricks to stay cozy during cold days - from layering techniques to choosing the right materials.",
+  image: winterBlog4
+  },
+
+  {
+    title: "How to Style Cozy Socks with Any Outfit",
+    excerpt: "Learn how to combine comfort and fashion. Cozy socks aren’t just for home – wear them with boots or sneakers in style.",
+    image: winterBlog2
+  },
+
+  {
+    title: "Top Winter Essentials You Can’t Miss",
+    excerpt: "From socks to scarves, here’s what you need in your wardrobe to stay warm, stylish, and ready for the season.",
+    image: winterBlog3
+  },
+
+  {
+    title: "Perfect Gift Ideas for the Holidays",
+    excerpt: "Looking for thoughtful presents? Cozy socks make the perfect gift for family and friends – practical and heartwarming.",
+    image: blogChristmas
+  },
+
+  {
+    title:  "Why Warm Feet Mean Better Health",
+    excerpt:  "Keeping your feet warm isn’t just about comfort – it also helps circulation and boosts overall winter wellbeing.",
+    image: blogSki
+  },
+
+
+];
+
 
 const products = ref([
  
@@ -149,16 +246,18 @@ const addToCart = (product) => {
 <style scoped>
 
 .carousel-container {
-  background: url('@/assets/images/winter-background2.jpg') no-repeat center center;
-  background-size: cover;
-  padding: 40px 0;
-  border-radius: 16px;
+ padding: 20px 0;
+ border-radius: 0;
+ overflow: hidden;
+ background: #f5f8f6;
+ margin: 0 20px;
+ 
 }
 
 
 .carousel-slide {
-  height: 50vh;
-  width: 40%;
+  height: 70ch;
+  width: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -168,6 +267,7 @@ const addToCart = (product) => {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
+  
 }
 
 .carousel-slide::after {
@@ -187,15 +287,45 @@ const addToCart = (product) => {
 }
 
 .carousel-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+  font-size: 3rem;
+  margin-bottom: 20px;
   font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
 .carousel-content p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  max-width: 600px;
+  margin: 0 auto;
 }
+
+:deep(.carousel_aarrow) {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #2c6e49;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+:deep(.carousel_arrow:hover) {
+  background-color: #2c6e49;
+  color: white;
+}
+
+
+
+
+:deep(.carousel__pagination-button) {
+  background-color: #2c6e49;
+}
+
+:deep(.carousel__pagination-button--active) {
+  background-color: #a1d9a5;                 /* aktivni indikator */
+}
+
+
 
 .shop-now {
   padding: 12px 28px;
@@ -212,9 +342,211 @@ const addToCart = (product) => {
   background: linear-gradient(135deg, #f76707, #e03131);
 }
 
+
+.highlight-section {
+  background-color: #d4f0d6;
+  padding: 50px 20px;
+  border-radius: 16px;
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.highlight-content {
+  max-width: 900px;
+  text-align: center;
+}
+
+.highlight-content h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #2c6e49;
+  font-weight: 700;
+}
+
+.highlight-content p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.highlight-cta {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.highlight-cta:hover {
+  background-color: #e65555;
+  transform: translateY(-2px);
+}
+
+.blog-section {
+  padding: 60px 20px;
+  background-color: #f5f8f6;
+  border-radius: 16px;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.blog-section h2 {
+  font-size: 2.2rem;
+  color: #2c6e49;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.blog-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  
+}
+
+.blog-card {
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.blog-content {
+  padding: 20px;
+  text-align: left;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blog-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #2c6e49;
+}
+
+.blog-content p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.blog-cta {
+  align-self: flex-start;
+  background-color: #ff6b6b;
+  color: white;
+  border:  none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.blog-cta:hover {
+  background-color: #e65555;
+  transform: translateY(-2px);
+}
+
+
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+}
+
+
+.modal-content {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+  color: #2c6e49;
+}
+
+
+.modal-content p {
+  margin-bottom: 20px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.modal-content button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.modal-content button:hover {
+  background-color: #e65555;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+
+
 .product-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);                    /* 3 kartice u prvom redu */
+  grid-template-columns: repeat(3, 1fr);    
   gap: 20px;
 }
 
@@ -234,13 +566,13 @@ const addToCart = (product) => {
   border-radius: 12px;
 }
 
-                                                    /*donji red za vece kartice */
+                                                     /*donji red za vece kartice */
 .product-gallery .shop-card:nth-child(n+4) {
-  grid-column: span 2;                             /* zauzimaju dva stupca */
+  grid-column: span 1;                               /* zauzimaju dva stupca */
 }
 
 .product-gallery .shop-card:nth-child(n+4) img {
-  height: 300px;                                   /* veća visina za donji red */
+  height: 300px;                                    /* veća visina za donji red */
 }
 
 
@@ -259,4 +591,8 @@ const addToCart = (product) => {
   object-fit: cover;
   border-radius: 12px;
 }
+
+
+
+
 </style>
