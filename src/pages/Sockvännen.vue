@@ -80,6 +80,16 @@
   </div>
 
     <Footer />
+
+    <div v-if="showPromo" class="promo-overlay" @click.self="closePromo">
+      <div class="promo-popup">
+        <button class="promo-close" @click="closePromo">&times;</button>
+        <h2>Special Offer</h2>
+        <p>For a limited time only:
+          Make your first order now and enjoy **30% OFF**!</p>
+          <button class="promo-btn">Shop Now</button>
+      </div>
+    </div>
     
   </div>
 
@@ -89,7 +99,7 @@
 
 import Navbar from '@/components/Navbar.vue';
 import Cart from '../components/Cart.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import Footer from '@/components/Footer.vue';
 import cozySocks from '../assets/images/cozy-socks.jpg'
 import warmHugSocks  from '../assets/images/warm-hug-socks.jpg'
@@ -153,6 +163,18 @@ const subscribe = () => {
   
 }
 
+const showPromo = ref(false);
+
+const closePromo = () => {
+  showPromo.value = false;
+}
+
+
+onMounted(() => {
+  setTimeout (() => {
+    showPromo.value = true;
+  }, 3000);
+});
 
 const blogPosts = [
   {
@@ -286,7 +308,7 @@ const addToCart = (product) => {
   padding: 20px;
 }
 
-.carousel-content h1 {
+.carousel-content h2 {
   font-size: 3rem;
   margin-bottom: 20px;
   font-weight: 700;
@@ -592,7 +614,77 @@ const addToCart = (product) => {
   border-radius: 12px;
 }
 
+.promo-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
 
+.promo-popup {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: slideDown 0.6s ease;
+}
+
+.promo-popup h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #2c6e49;
+}
+
+.promo-popup p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.promo-btn {
+  background: linear-gradient(135deg, #d6336c, #f59f00);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.promo-btn:hover {
+  background: linear-gradient(135deg, #f76707, #e03131);
+  transform: translateY(-2px)
+}
+
+.promo-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #666;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideDown {
+  from {transform: translateY(-50px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
 
 
 </style>

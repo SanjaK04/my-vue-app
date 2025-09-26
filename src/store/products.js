@@ -1,36 +1,40 @@
 import { ref } from 'vue'
 
-import greenSocks from '../assets/images/green_socks.jpg'
-import blueSocks from '../assets/images/blue_socks.jpg'
+
+import sportsSocks1 from '../assets/images/sports-socks1.jpg'
 import niceSocks from '../assets/images/nice_socks.jpg'
+import gentlemansTouchSocks from '../assets/images/gentlemans-touch-socks.jpg'
 
 export const products = ref ([
     {
         id: 1,
-        name: 'Green Socks',
-        image: greenSocks,
+        name: 'Gentlemans Touch',
+        image: gentlemansTouchSocks,
+        price: 198,
         inventory: 100,
-        color: 'green',
+        color: 'grey',
         material: 'cotton',
         details: ['50% cotton', '30% wool', '20% polyester'],
-        variants: [{ id: 1, color: 'Blue'}],
+        variants: [{ id: 1, color: 'Black'}],
         cart: 0,
     },
     {
         id: 2,
-        name: 'Blue socks',
-        image: blueSocks,
+        name: 'Sports Socks',
+        image: sportsSocks1,
+        price: 257,
         inventory: 0,
-        color: 'blue',
+        color: 'white',
         material: 'cotton',
         details: ['50% cotton', '30% wool', '20% polyester'],
-        variants: [{ id: 2, color: 'Green' }],
+        variants: [{ id: 2, color: 'Grey' }],
         cart: 0,
     },
     {
         id: 3,
         name: 'Nice Socks',
         image: niceSocks,
+        price: 318,
         inventory: 9,
         color: 'colorful',
         material: 'wool',
