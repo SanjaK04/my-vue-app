@@ -2,19 +2,19 @@
   <div class="home-wrapper">
     <Navbar />
 
-    <section class="hero-section">
-      <div class="hero-content">
-        <h1>Step Into Elegance & Comfort</h1>
-        <p>Premium socks designed for men who value style, confidence, and all-day comfort.</p>
-        <button class="cta-btn">Shop Collection</button>
-      </div>
-      <div class="hero-media">
-        
-        <img src="@/assets/images/black-socks.jpg" alt="Elegant socks hero" />
-       
-      </div>
-    </section>
+     <section class="hero-section">
+  <video autoplay muted loop class="hero-video">
+    <source src="../assets/videos/video-shoes1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-content">
+    <h1>Elevate Your Style with Elegant Socks</h1>
+    <p>Discover our exclusive collection of premium socks designed for the modern gentleman.</p>
+    <button class="hero-btn">Shop Collection</button>
+  </div>
+</section>
 
+   
 
     <section class="search-section">
       <SearchFilter :items="products" @update:filtered="filteredProducts = $event" />
@@ -38,7 +38,7 @@
     
     <section class="best-sellers">
       <h2>Best Sellers</h2>
-      <section class="product-section">
+      <section class="home-product-section">
   <div
     v-for="(product, index) in filteredProducts"
     :key="product.id"
@@ -55,7 +55,7 @@
       <h2>{{ product.name }}</h2>
       <p>
         {{ product.description }} <br />
-        These premium socks are crafted for comfort, style, and durability.
+        
       </p>
       <p class="price">{{ product.price }} SEK</p>
       <button class="button" @click="addToCarta(product)">Add to Cart</button>
@@ -102,6 +102,7 @@
   </div>
 </template>
 
+
 <script setup>
 import Navbar from '../components/Navbar.vue'
 import Cart from '../components/Cart.vue'
@@ -116,50 +117,60 @@ const filteredProducts = ref([...products.value])
 
 <style scoped>
 
+
 .hero-section {
-  display: grid;
-  grid-template-columns: 1fr 480px;
-  gap: 40px;
+  position: relative;
+  height: 80vh;
+  display: flex;
   align-items: center;
-  padding: 80px 20px;
-  background: linear-gradient(135deg, #172433 0%, #1b263b 100%); 
+  justify-content: center;
   color: #fff;
-  border-radius: 12px;
-  margin: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 .hero-content h1 {
+  color:#2c3e50;
   font-size: 3rem;
   margin-bottom: 20px;
 }
+
 .hero-content p {
+  color: #2c3e50;
   font-size: 1.3rem;
   margin-bottom: 30px;
-  max-width: 600px;
-  color: #dfe9ef;
 }
 
-.cta-btn {
-  padding: 14px 32px;
-  background: #d4af37;
+.hero-btn {
+  background: linear-gradient(135deg, #4a90e2, #50e3c2);
+  color: #fff;
   border: none;
-  border-radius: 30px;
+  padding: 14px 28px;
   font-size: 1.1rem;
+  border-radius: 30px;
   cursor: pointer;
-
-}
-.cta-btn:hover {
-  background: #b8912f;
+  transition: transform 0.3s ease;
 }
 
-.hero-media img {
-  width: 100%;
-  max-width: 400px;
+.hero-btn:hover {
+  transform: translateY(-3px);
+}
+
+.hero-image img {
+  border-radius: 20px;
+  max-width: 500px;
   height: 300px;
-  border-radius: 12px;
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  padding: 0px;
 }
 
 .home-product-section {
@@ -167,7 +178,7 @@ const filteredProducts = ref([...products.value])
   margin: 40px auto;
   padding: 0 20px;
   display: grid;
-  gap: 40px;
+  gap: 60px;
 }
 
 
@@ -231,6 +242,7 @@ const filteredProducts = ref([...products.value])
 }
 
 .home-product-info .button {
+  align-self: center;
   width: fit-content;
   max-width: 200px;
   padding: 12px 24px;
@@ -243,7 +255,6 @@ const filteredProducts = ref([...products.value])
 }
 
 
-
 .categories {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -251,6 +262,7 @@ const filteredProducts = ref([...products.value])
   padding: 60px 20px;
   background: #f5f5f5;
 }
+
 .category-card {
   background: #fff;
   padding: 30px;
@@ -264,6 +276,7 @@ const filteredProducts = ref([...products.value])
   padding: 80px 20px;
   text-align: center;
 }
+
 .best-sellers h2 {
   font-size: 2rem;
   margin-bottom: 40px;
@@ -279,6 +292,7 @@ const filteredProducts = ref([...products.value])
   margin: 60px 0;
   border-radius: 16px;
 }
+
 .promo-btn {
   margin-top: 20px;
   padding: 12px 28px;
@@ -294,12 +308,14 @@ const filteredProducts = ref([...products.value])
   padding: 80px 20px;
   background: #f5f5f5;
 }
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   margin-top: 30px;
 }
+
 .blog-card {
   background: #fff;
   padding: 25px;
@@ -312,18 +328,21 @@ const filteredProducts = ref([...products.value])
   text-align: center;
   padding: 80px 20px;
 }
+
 .newsletter-form {
   margin-top: 20px;
   display: flex;
   justify-content: center;
   gap: 10px;
 }
+
 .newsletter-form input {
   padding: 12px;
   border-radius: 30px;
   border: 1px solid #ccc;
   width: 280px;
 }
+
 .newsletter-form button {
   padding: 12px 24px;
   border: none;
@@ -332,63 +351,7 @@ const filteredProducts = ref([...products.value])
   cursor: pointer;
 }
 
-.product-section {
-  display: grid;
-  gap: 60px;
-  margin: 80px 20px;
-}
 
-.product-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 40px;
-}
-
-.product-row.reverse {
-  grid-template-areas: "text-image";
-}
-
-.product.row:not(.reverse) {
-  grid-template-areas: "image text";
-}
-
-.product-image {
-  grid-area: image;
-}
-
-.product-info {
-  grid-area: text;
-}
-
-.product-image img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px  rgba(0, 0, 0, 0.1);
-}
-
-.product-info p {
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  color: #1b263b;
-}
-
-.product-info .price {
-  font-weight: bold;
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-}
-
-.product-info button {
-  padding: 12px 24px;
-  border: none;
-  background: #d4af37;
-  color: #fff;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
-}
 
 
 </style>

@@ -1,9 +1,11 @@
 import { ref } from 'vue'
 
 
-import sportsSocks1 from '../assets/images/sports-socks1.jpg'
+
 import niceSocks from '../assets/images/nice_socks.jpg'
 import gentlemansTouchSocks from '../assets/images/gentlemans-touch-socks.jpg'
+import homeSocks2 from '../assets/images/home-socks2.jpg'
+import homeSocks3 from '../assets/images/home-socks3.jpg'
 
 export const products = ref ([
     {
@@ -12,34 +14,37 @@ export const products = ref ([
         image: gentlemansTouchSocks,
         price: 198,
         inventory: 100,
-        color: 'grey',
-        material: 'cotton',
-        details: ['50% cotton', '30% wool', '20% polyester'],
-        variants: [{ id: 1, color: 'Black'}],
+        description: 'For those who want to look flawless in every business occasion.',
         cart: 0,
     },
     {
         id: 2,
-        name: 'Sports Socks',
-        image: sportsSocks1,
+        name: 'Casual Vibes',
+        image: homeSocks2,
         price: 257,
         inventory: 0,
-        color: 'white',
-        material: 'cotton',
-        details: ['50% cotton', '30% wool', '20% polyester'],
-        variants: [{ id: 2, color: 'Grey' }],
+       
+        description: 'For energetic moments – socks that move with every step.',
         cart: 0,
     },
     {
         id: 3,
-        name: 'Nice Socks',
+        name: 'Business Elegance',
         image: niceSocks,
         price: 318,
         inventory: 9,
-        color: 'colorful',
-        material: 'wool',
-        details: ['80% cotton', '20% polyester'],
-        variants: [{ id: 3, color: 'Colorful'}],
+        description: 'Perfect for every day – comfort you don’t notice, but feel.',
+    
+        cart: 0,
+    },
+
+    {
+        id: 4, 
+        name: 'Winter Essentials',
+        image: homeSocks3,
+        price: 510,
+        inventory: 34,
+        description: 'Warmth and style – because winter calls for more than just comfort.' ,
         cart: 0,
     }
 ])

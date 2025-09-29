@@ -4,19 +4,39 @@
     <Navbar />
     <Cart />
 
-    
     <section class="hero-section">
-  <video autoplay muted loop class="hero-video">
-    <source src="../assets/videos/video-shoes1.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="hero-content">
-    <h1>Elevate Your Style with Elegant Socks</h1>
-    <p>Discover our exclusive collection of premium socks designed for the modern gentleman.</p>
-    <button class="hero-btn">Shop Collection</button>
+      <div class="hero-content">
+        <h1>Step Into Elegance & Comfort</h1>
+        <p>Premium socks designed for men who value style, confidence, and all-day comfort.</p>
+        <button class="cta-btn">Shop Collection</button>
+      </div>
+      <div class="hero-media">
+        
+        <img src="@/assets/images/black-socks.jpg" alt="Elegant socks hero" />
+       
+      </div>
+    </section>
+
+
+    <section class="intro-banner">
+  <div class="intro-content">
+    <h2>Our Journey in Crafting Elegance</h2>
+    <p>Since our founding, we have dedicated ourselves to creating socks that embody both
+      sophistication and comfort. Every pair is crafted using the finest materials and
+      time-honored techniques, ensuring that our socks not only look impeccable but also
+      feel extraordinary throughout the day.</p>
+      <p>
+        Inspired by a legacy of elegant craftsmanship, we blend tradition with modern design
+      to bring you premium socks that complement every occasion—from business meetings to
+      casual moments of relaxation.
+      </p>
+      <p>
+        Experience the perfect harmony of style, durability, and comfort—because true
+      elegance is in the details.
+      </p>
+    
   </div>
 </section>
-
 
     
     <section class="features-section">
@@ -119,6 +139,96 @@ const addToCart = (product) => {
 </script>
 
 <style scoped>
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 100px;
+}
+
+.hero-media img {
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  background-color: rgba(10, 25, 50, 0.85);
+  padding: 30px 25px;
+  border-radius: 12px;
+  margin: 40px 20px 0 20px;
+  color: #fff;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.cta-btn {
+  padding: 12px 28px;
+  background-color: #d4af37;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  background: #b8912f;
+}
+
+.intro-banner {
+  width: 100%;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #1b263b 0%, #2c3e50 100%);
+  color: #fff;
+  border-radius: 16px;
+  margin: -350px 0 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.intro-content {
+  max-width: 900px;
+}
+
+.intro-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.intro-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #dfe9ef;
+}
+
+
+
+
 .elegant-socks-wrapper {
   font-family: 'Helvetica Neue', sans-serif;
   color: #222;
@@ -126,63 +236,15 @@ const addToCart = (product) => {
 }
 
 
-.hero-section {
-  position: relative;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-align: center;
-  overflow: hidden;
-}
-
-.hero-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-.hero-content h1 {
-  color:#2c3e50;
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
-.hero-content p {
-  color: #2c3e50;
-  font-size: 1.3rem;
-  margin-bottom: 30px;
-}
-.hero-btn {
-  background: linear-gradient(135deg, #4a90e2, #50e3c2);
-  color: #fff;
-  border: none;
-  padding: 14px 28px;
-  font-size: 1.1rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.hero-btn:hover {
-  transform: translateY(-3px);
-}
-.hero-image img {
-  border-radius: 20px;
-  max-width: 500px;
-  height: 300px;
-  object-fit: cover;
-}
-
-
 .features-section {
   display: flex;
   justify-content: space-around;
-  margin: 60px 20px;
+  margin: 120px 20px;
+  gap: 20xp;
+  z-index: 2;
+  position: relative;
 }
+
 .feature-card {
   background: #fff;
   padding: 30px 20px;
@@ -190,12 +252,15 @@ const addToCart = (product) => {
   width: 28%;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   text-align: center;
+
 }
+
 .feature-card h3 {
   font-size: 1.4rem;
   margin-bottom: 10px;
   color: #2c3e50;
 }
+
 .feature-card p {
   font-size: 1rem;
   color: #555;
@@ -206,16 +271,19 @@ const addToCart = (product) => {
   margin: 60px 20px;
   text-align: center;
 }
+
 .product-gallery h2 {
   font-size: 2rem;
   margin-bottom: 40px;
   color: #2c3e50;
 }
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
+
 .product-card {
   background: #fff;
   border-radius: 16px;
@@ -224,9 +292,11 @@ const addToCart = (product) => {
   text-align: center;
   transition: transform 0.3s ease;
 }
+
 .product-card:hover {
   transform: translateY(-5px);
 }
+
 .product-image {
   width: 100%;
   height: 250px;
@@ -234,11 +304,13 @@ const addToCart = (product) => {
   border-radius: 16px;
   margin-bottom: 15px;
 }
+
 .price {
   font-weight: bold;
   color: #4a90e2;
   margin: 10px 0;
 }
+
 .product-card button {
   background: #2c3e50;
   color: #fff;
@@ -248,6 +320,7 @@ const addToCart = (product) => {
   cursor: pointer;
   transition: background 0.3s ease;
 }
+
 .product-card button:hover {
   background: #4a90e2;
 }
@@ -261,17 +334,23 @@ const addToCart = (product) => {
   border-radius: 20px;
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
+
 .promo-content h2 {
+  display: flex;
+  justify-content: center;
   font-size: 2.5rem;
   margin-bottom: 15px;
 }
+
 .promo-content p {
   font-size: 1.2rem;
   margin-bottom: 25px;
 }
+
 .promo-btn {
   background: #fff;
   color: #2c3e50;
@@ -281,6 +360,7 @@ const addToCart = (product) => {
   font-size: 1.1rem;
   cursor: pointer;
 }
+
 .promo-btn:hover {
   background: #50e3c2;
   color: #fff;
@@ -294,11 +374,13 @@ const addToCart = (product) => {
   border-radius: 20px;
   margin: 60px 20px;
 }
+
 .testimonial-section h2 {
   font-size: 2rem;
   margin-bottom: 40px;
   color: #2c3e50;
 }
+
 .testimonial-card {
   max-width: 700px;
   margin: 0 auto 20px;
@@ -307,11 +389,13 @@ const addToCart = (product) => {
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
+
 .testimonial-card p {
   font-size: 1.1rem;
   color: #555;
   margin-bottom: 10px;
 }
+
 .testimonial-card span {
   font-weight: bold;
   color: #2c3e50;
