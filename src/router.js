@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from './pages/Home.vue'
-import Search from './components/Search.vue'
-import Mysstrumpa from './pages/Mysstrumpa.vue'
-import Sockvännen from './pages/Sockvännen.vue'
+
+import Elegant from './pages/Elegant.vue'
+import Winter from './pages/Winter.vue'
+import Sports from './pages/Sports.vue'
 
 
 
@@ -12,26 +13,27 @@ const routes = [
     name: 'Home',
     component: Home
   },
-                
-  {
-    path: '/search',
-    name: 'Search',
-    component: Search
-  },
   
+
   {
-    path: '/mysstrumpa',
-    name: 'Mysstrrumpa',
-    component: Mysstrumpa
+    path: '/elegant',
+    name: 'Elegant',
+    component: Elegant
   },
 
   {
-    path: '/sockvännen',
-    name: 'Sockvännen',
-    component: Sockvännen
+    path: '/winter',
+    name: 'Winter',
+    component: Winter
+  },
+  
+  {
+    path: '/sports',
+    name: 'Sports',
+    component: Sports
   }
   
-  // ovdje kasnije možeš dodati pamuk, vuna, sprt
+  // ovdje kasnije možeš dodati pamuk, vuna, sport
 ]
 
 const router = createRouter({

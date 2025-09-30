@@ -2,9 +2,10 @@
   <div class="navbar">
           
     <router-link to="/" class="navbutton">Home</router-link>
-    <router-link to="/mysstrumpa" class="navbutton">Mysstrumpa</router-link>
-    <router-link to="/sockvännen" class="navbutton">Sockvännen</router-link>
-    <router-link to="/färgfesten" class="navbutton">Färgfesten</router-link>
+    <router-link to="/searchFilter">Search Filter</router-link>
+    <router-link to="/elegant" class="navbutton">Elegant</router-link>
+    <router-link to="/winter" class="navbutton">Winter</router-link>
+    <router-link to="/sports" class="navbutton">Sports</router-link>
 
     <div class="search-container">
       <input v-model="searchQuery" @keyup.enter="doSearch" type="text" placeholder="Search for socks"/>

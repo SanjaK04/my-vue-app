@@ -8,6 +8,7 @@
       <p v-if="product.inventory > 10" class="in-stock">In stock</p>
       <p v-else-if="product.inventory <= 10 && product.inventory > 0" class="almost-sold-out">Almost sold out</p>
       <p v-else class="out-of-stock">Out of stock</p>
+
       <div class="product-details">
         <span v-for="detail in product.details" :key="detail" class="detail-badge">
           {{ detail }}
@@ -19,36 +20,27 @@
           {{ variant.color }}
         </span>
       </div>
-      <button class="cart-button" @click="addToCart(product)">Add to cart</button>
 
-
+      <button class="cart-button" @click="exploreCollection(product)">Explore Collection</button>
     </div>
   </div>
 </template>
 
 <script setup>
-
 import { defineProps } from 'vue'
+
 const props = defineProps({
   product: Object,
-  addToCart: Function
+  exploreCollection: Function
 })
 
 const getVariantColor = (color) => {
-  switch(color.toLowerCase()) {
-    case 'blue':
-      return '#2196F3' 
-    case 'green':
-      return '#4CAF50' 
-    case 'colorful':
-      return 'linear-gradient(90deg, #ff6ec4, #7873f5)'
-    default:
-      return '#ccc' 
+  switch(color?.toLowerCase()) {
+    case 'blue': return '#2196F3';
+    case 'green': return '#4CAF50';
+    case 'colorful': return 'linear-gradient(90deg, #ff6ec4, #7873f5)';
+    default: return '#ccc';
   }
 }
-
 </script>
 
-<style scoped>
-
-</style>

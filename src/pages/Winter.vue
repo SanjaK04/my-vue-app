@@ -1,16 +1,16 @@
 <template>
-  <div class="sockvännen-wrapper">
+  <div class="winter-wrapper">
 
   <Navbar />
   <Cart />
 
-  <section class="sockvännen-hero">
+  <section class="winter-hero">
      <h1>Keep Your Feet Warm This Winter!</h1>
                   <p>Discover our cozy socks collection and enjoy comfort all season long.</p>
                   <button class="shop-now">Shop Now</button>
   </section>
 
-  <div class="sockvännen-page">
+  <div class="winter-page">
     <section class="carousel-container">
 
     <Carousel :autoplay="3000" :wrap-around="true">
@@ -322,20 +322,6 @@ const addToCart = (product) => {
   max-width: 600px;
   margin: 0 auto;
 }
-
-:deep(.carousel_aarrow) {
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #2c6e49;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-:deep(.carousel_arrow:hover) {
-  background-color: #2c6e49;
-  color: white;
-}
-
 
 
 

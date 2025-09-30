@@ -1,4 +1,5 @@
 
+
 * {
   margin: 0;
   padding: 0;
@@ -8,21 +9,20 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f5f5;
+  background-color: #495b7c;
   color: #333;
   background-size: cover;     
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;            /* slika ostaje fiksna dok scrollaš */
-  background-color: #e8f5e9;            /* fallback boja ako se slika ne učita */  
-  
+  background-color: #dee8f8;
 }
 
 
 .navbar {
   width: 100%;
   height: 70px;
-  background: white;
+  background: #495b7c;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,7 +62,7 @@ body {
 
  .search-container {
   margin-left: auto;
-  margin-right: 180px; 
+  margin-right: 100px; 
   display: flex;
   align-items: center;
 }
@@ -278,22 +278,6 @@ body {
 }
 
 
-.product-variants {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 10px;
-}
-
-.variant-badge {
-  background-color: #d0f0d6;
-  color: #333;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
 .product-info {
   display: flex;
   flex-direction: column; 
@@ -301,18 +285,6 @@ body {
        
 }
 
-.in-stock {
-  font-size:x-large;
-  
-}
-
-.almost-sold-out {
-  font-size:x-large;
-}
-
-.out-of-stock {
-  font-size:x-large;
-}
 
 
 .footer {
@@ -366,94 +338,8 @@ body {
   color: #e0e0e0;
 }
 
-.mysstrumpa-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
 
-
-.mysstrumpa-page {
-  flex: 1;
-  font-family: 'Arial', sans-serif;
-  margin: 20px;
-}
-
-.mysstrumpa-page .hero {
-  text-align: center;
-  background-color: #f0f0f0;
-  padding: 50px 20px;
-  border-radius: 10px;
-  margin-bottom: 30px;
-}
-
-.mysstrumpa-page .hero h1 {
-  font-size: 2.5rem;
-  color: #333;
-}
-
-.mysstrumpa-page .hero p {
-  font-size: 1.2rem;
-  color: #666;
-}
-
-.mysstrumpa-page .product-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.mysstrumpa-page .product-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  width: 250px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.mysstrumpa-page .product-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-.mysstrumpa-page .product-card h3 {
-  font-size: 1.5rem;
-  color: #333;
-  margin: 10px 0;
-}
-
-.mysstrumpa-page .product-card p {
-  font-size: 1rem;
-  color: #666;
-}
-
-.mysstrumpa-page .price {
-  font-size: 1.2rem;
-  color: #000;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.mysstrumpa-page button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.mysstrumpa-page button:hover {
-  background-color: #45a049;
-}
-
-
-.sockvännen-hero {
+.winter-hero {
   position: relative;
   text-align: center;
   color: #fff;
@@ -463,7 +349,7 @@ body {
   overflow: hidden;
 }
 
-.sockvännen-hero::before {
+.winter-hero::before {
   content: '';
   position: absolute;
   top: 0;
@@ -482,21 +368,21 @@ body {
   margin: 0 auto;
 }
 
-.sockvännen-hero h1 {
+.winter-hero h1 {
   font-size: 3rem;
   margin-bottom: 20px;
   font-weight: 700;
   text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
 }
 
-.sockvännen-hero p {
+.winter-hero p {
   font-size: 1.25rem;
   margin-bottom: 30px;
   line-height: 1.5;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
 }
 
-.sockvännen-hero .shop-now {
+.winter-hero .shop-now {
   padding: 12px 28px;
   font-size: 1rem;
   font-weight: 600;
@@ -508,17 +394,17 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.sockvännen-hero .shop-now:hover {
+.winter-hero .shop-now:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
-.sockvännen-page {
+.winter-page {
   font-family: 'Arial', sans-serif;
   margin: 20px;
 }
 
-.sockvännen-page .hero {
+.winter-page .hero {
   text-align: center;
   background-color: #f0f0f0;
   padding: 50px 20px;
@@ -526,17 +412,17 @@ body {
   margin-bottom: 30px;
 }
 
-.sockvännen-page .hero h1 {
+.winter-page .hero h1 {
   font-size: 2.5rem;
   color: #333;
 }
 
-.sockvännen-page .hero p {
+.winter-page .hero p {
   font-size: 1.2rem;
   color: #666;
 }
 
-.sockvännen-page .product-gallery {
+.winter-page .product-gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -544,7 +430,7 @@ body {
   margin-top: 30px;
 }
 
-.sockvännen-page .product-card {
+.winter-page .product-card {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -554,31 +440,31 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.sockvännen-page .product-card img {
+.winter-page .product-card img {
   width: 100%;
   height: auto;              
   border-radius: 5px;
 }
 
-.sockvännen-page .product-card h3 {
+.winter-page .product-card h3 {
   font-size: 1.5rem;
   color: #333;
   margin: 10px 0;
 }
 
-.sockvännen-page .product-card p {
+.winter-page .product-card p {
   font-size: 1rem;
   color: #666;
 }
 
-.sockvännen-page .price {
+.winter-page .price {
   font-size: 1.2rem;
   color: #000;
   font-weight: bold;
   margin: 10px 0;
 }
 
-.sockvännen-page button {
+.winter-page button {
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -587,7 +473,7 @@ body {
   cursor: pointer;
 }
 
-.sockvännen-page button:hover {
+.winter-page button:hover {
   background-color: #45a049;
 }
 
@@ -673,5 +559,59 @@ body {
 
   .cart-button:hover {
     background-color: #45a049; 
+  }
+}
+
+/* Mobiteli */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .search-filter {
+    flex-direction: column;
+    margin: 1rem;
+    max-width: 95%;
+  }
+
+  .search-filter input[type="text"],
+  .search-filter select,
+  .search-filter button {
+    width: 100%;
+  }
+
+  .product-container {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .product-image,
+  .product-info {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .navbutton {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Tableti i manji desktop */
+@media (max-width: 1024px) {
+  .product-container {
+    flex-direction: row;
+    min-height: 250px;
+  }
+
+  .product-image,
+  .product-info {
+    width: 50%;
+  }
+
+  .navbutton {
+    width: auto;
   }
 }

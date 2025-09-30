@@ -22,8 +22,9 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { products } from '../store/products.js'
+import { useCartStore } from '../store/cart.js'
 
+const store = useCartStore()
 const showPopup = ref(false)
 
 const togglePopup = () => {
@@ -31,10 +32,10 @@ const togglePopup = () => {
 }
 
 const totalQuantity = computed(() => {
-  return products.value.reduce((sum, product) => sum + product.cart, 0)
+  return store.items.reduce((sum, product) => sum + product.cart, 0)
 })
 
 const cartProducts = computed(() => {
- return products.value.filter(p => p.cart > 0)
+ return store.items.filter(p => p.cart > 0)
 })
 </script> 
