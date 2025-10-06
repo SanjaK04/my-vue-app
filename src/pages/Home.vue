@@ -47,9 +47,8 @@
           v-for="(product, index) in filteredProducts"
           :key="product.id"
           :product="product"
-          :exploreCollection="store.exploreCollection" 
           :index="index"
-          mode="default"
+          mode="home"
         />
       </section>
     </section>

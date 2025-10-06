@@ -1,3 +1,4 @@
+
 <template>
   <div class="sports-page">
 
@@ -24,14 +25,20 @@
     <!-- SPORTS PRODUCTS -->
     <section class="sports-products">
       <h2>Sports Collection</h2>
-      <div class="sports-grid">
-        <ProductCard
+      <div class="sports-list">
+        <div
           v-for="(product, index) in filteredProducts"
           :key="product.id"
-          :product="product"
-          :index="index"
-          mode= "sports"
-        />
+          class="sports-card"
+        >
+          <img :src="product.image" :alt="product.name" class="sports-image"/>
+          <div class="sports-info">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p class="price">{{ product.price ? product.price + ' SEK' : '' }}</p>
+            <button @click="addToCart(product)">Add to Cart</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -67,7 +74,6 @@
       </div>
     </section>
 
-    <!-- CART COMPONENT -->
     <Cart :cart="store.cart" />
 
   </div>
@@ -76,12 +82,13 @@
 <script setup>
 import { ref } from 'vue'
 import { useCartStore } from '@/store/cart'
-import ProductCard from '@/components/ProductCard.vue'
 import SearchFilter from '@/pages/SearchFilter.vue'
 import Cart from '@/components/Cart.vue'
 
 const store = useCartStore()
 const filteredProducts = ref(store.products.filter(p => p.category === 'sports'))
+
+const addToCart = (product) => store.addToCart(product)
 </script>
 
 <style scoped>
@@ -91,8 +98,9 @@ const filteredProducts = ref(store.products.filter(p => p.category === 'sports')
   align-items: center;
   justify-content: space-between;
   padding: 60px 20px;
-  background: #e8f0f8;
+  background: linear-gradient(120deg, #e8f0f8, #d4f0ff);
   gap: 30px;
+  border-radius: 20px;
   height: 60vh;
 }
 .hero-content {
@@ -114,110 +122,136 @@ const filteredProducts = ref(store.products.filter(p => p.category === 'sports')
   padding: 12px 28px;
   border-radius: 30px;
   cursor: pointer;
-  transition: 0.3s;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 .hero-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05);
 }
 .hero-image img {
   width: 100%;
   max-width: 400px;
-  border-radius: 16px;
+  border-radius: 20px;
   object-fit: cover;
   height: 50vh;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
-/* PRODUCTS GRID */
+/* SPORTS PRODUCTS LIST */
 .sports-products {
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-  background: #fff;
   margin: 60px 20px;
   padding: 40px 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
 }
-
-/* PRODUCT CARD */
-.sports-product h2 {
-text-align: center;
-font-size: 2rem;
-color: #1b263b;
-margin-bottom: 40px;
+.sports-products h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #1b263b;
+  margin-bottom: 40px;
 }
-
-.sports-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+.sports-list {
+  display: flex;
+  flex-direction: column;
   gap: 25px;
 }
 .sports-card {
-  background: #fff;
-  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
   padding: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.3s ease;
+  background: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .sports-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
 }
 .sports-image {
-  width: 100%;
-  height: 250px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
   border-radius: 16px;
-  margin-bottom: 15px;
 }
-
+.sports-info {
+  flex: 1;
+}
 .sports-info h3 {
   font-size: 1.5rem;
-  margin-bottom: 10px;
   color: #2c3e50;
+  margin-bottom: 10px;
 }
-
 .sports-info p {
   font-size: 1rem;
   color: #555;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
-
 .sports-info .price {
   font-weight: bold;
   color: #4a90e2;
   margin-bottom: 15px;
 }
-
-
 .sports-info button {
   background: #2c3e50;
-  color:#fff;
+  color: #fff;
   border: none;
   padding: 12px 24px;
   border-radius: 30px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: 0.3s;
 }
-
 .sports-info button:hover {
   background: #4a90e2;
+  transform: scale(1.05);
 }
-
-
-
 
 /* PROMO BANNER */
 .sports-promo-banner {
+  margin: 60px 20px;
+  padding: 50px 20px;
   background: linear-gradient(135deg, #1b263b, #2c3e50);
   color: #fff;
   text-align: center;
-  padding: 50px 20px;
-  margin: 60px 20px;
-  border-radius: 16px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+.sports-promo-banner h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+.sports-promo-banner p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.sports-promo-btn {
+  background: #d4af37;
+  color: #1b263b;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.sports-promo-btn:hover {
+  background: #b8912f;
+  transform: scale(1.05);
 }
 
 /* BLOG SECTION */
 .sports-blog-section {
   padding: 60px 20px;
   background: #f5f5f5;
+  border-radius: 20px;
+}
+.sports-blog-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #1b263b;
 }
 .sports-blog-grid {
   display: grid;
@@ -248,5 +282,12 @@ margin-bottom: 40px;
   border-radius: 30px;
   background: #d4af37;
   cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
 }
-</style>
+.sports-newsletter-form button:hover {
+  background: #b8912f;
+  transform: scale(1.05);
+}
+  </style>
+

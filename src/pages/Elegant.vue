@@ -150,18 +150,19 @@ onMounted(() => {
   const banner = introBanner.value;
   const hero = document.querySelector('.hero-section');
 
-  const spacing = -850;
-  const heroHeight = hero.offsetHeight;
-
-  const finalPosition = heroHeight + spacing;
-  const startPosition = finalPosition - 1000;
-
-  banner.style.transform = `translateY(${startPosition}px)`;
+ 
+  banner.style.transform = `translateY(-100%)`;
   banner.style.opacity = '0';
+
+ const heroBottom = hero.offsetTop + hero.offsetHeight;
+ const bannerTop = banner.offsetTop
+
+ const stopOffset = -50;
+ const stopPosition = heroBottom - bannerTop + stopOffset;
 
   setTimeout(() => {
     banner.style.transition = 'transform 3s cubic-bezier(0.25,0.1,0.25,1), opacity 3s ease-out';
-    banner.style.transform = `translateY(${finalPosition}px)`;
+    banner.style.transform = `translateY(${stopPosition}px)`;
     banner.style.opacity = '1';
   }, 100);
 })
@@ -188,7 +189,7 @@ const closeImage = () => { fullscreenImage.value = null }
 .hero-section {
   position: relative;
   width: 100%;
-  height: 75vh;
+  height: 80vh;
   overflow: hidden;
   display: flex;
   align-items: flex-start;
@@ -248,7 +249,7 @@ const closeImage = () => { fullscreenImage.value = null }
   position: relative;
   width: 90%;
   max-width: 1200px;
-  margin: -300px auto 60px auto;
+  margin: auto;
   padding: 60px 50px;
   background: linear-gradient(135deg, #1b263b 0%, #2c3e50 100%);
   color: #fff;
@@ -519,10 +520,6 @@ const closeImage = () => { fullscreenImage.value = null }
 }
 
 
-
-
-
-
 .promo-section {
   background: linear-gradient(135deg, #2c3e50, #4a90e2);
   color: #fff;
@@ -597,5 +594,7 @@ const closeImage = () => { fullscreenImage.value = null }
   font-weight: bold;
   color: #2c3e50;
 }
+
+
 
 </style>

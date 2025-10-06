@@ -1,6 +1,6 @@
 
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
 
@@ -319,42 +319,32 @@ export const useCartStore = defineStore("cart", () => {
   const router = useRouter()
   const cart = ref([]);
 
-  function exploreCollection(product) {
-    if (product.category === 'sports') {
-      router.push('/sports')
-      }  else if (product.category === 'elegant') {
-        router.push('/elegant')
-      } else {
-        console.log('Other category:', product.name)
-      }
-    }
-
 
 
 
   const addToCart = (product) => {
-    if (product.inventory > product.cart) {
-      product.cart++;
-      const exists = cart.value.find((p) => p.id === product.id);
-      if (!exists) cart.value.push(product);
-    } else {
-      alert("Not enough stock");
-    }
-  };
-
-  const removeFromCart = (product) => {
-    if (product.cart > 0) {
-      product.cart--;
-      if (product.cart === 0) {
-        cart.value = cart.value.filter((p) => p.id !== product.id);
+    const existing = cart.value.find(p => p.id === product.id)
+      if (existing) {
+        existing.quantity += 1
+      } else {
+        cart.value.push({
+          ...product, quantity: 1
+        })
       }
-    }
-  };
+  }
 
-  const clearCart = () => {
-    cart.value.forEach((p) => (p.cart = 0));
-    cart.value = [];
-  };
+  const removeFromCart = (productId) => {
+    cart.value = cart.value.filter(item => item.id !== productId)
+  }
+  
+  const totalQuantity = computed (() => 
+  cart.value.reduce((sum, item) => sum + item.quantity, 0)
+)
 
-  return { products, cart, exploreCollection, addToCart, removeFromCart, clearCart };
+
+const totalPrice = computed (() => 
+cart.value.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0)
+)
+
+  return { products, cart, addToCart, removeFromCart, totalQuantity, totalPrice};
 });

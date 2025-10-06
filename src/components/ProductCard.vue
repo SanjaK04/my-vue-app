@@ -26,9 +26,9 @@
         </span>
       </div>
 
-      <button v-if="addToCart" class="button" @click="addToCart(product)">Add To Cart</button>
+      <button v-if="mode === 'home'" class="button" @click="exploreCollection(product)">Explore Collection</button>
 
-     <button v-else class="button" @click="exploreCollection(product)">Explore Collection</button>
+     <button v-else class="button" @click="addToCart(product)">Add To Cart</button>
      
     </div>
   </div>

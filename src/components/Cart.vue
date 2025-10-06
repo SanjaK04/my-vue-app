@@ -8,11 +8,11 @@
 
     <div v-if="showPopup" class="cart-popup">
       <ul>
-        <li v-for="product in cartProducts" :key="product.id">
-          {{ product.name }} x {{ product.cart }}
+        <li v-for="product in cart" :key="product.id">
+          {{ product.name }} x {{ product.quantity }}
         </li>
       </ul>
-      <p v-if="cartProducts.length === 0">Your cart is empty</p>
+      <p v-if="cart.length === 0">Your cart is empty</p>
     </div>
   </div>
 </template>
