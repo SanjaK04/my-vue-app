@@ -1,7 +1,6 @@
 <template>
   <div class="elegant-socks-wrapper">
 
-    <Navbar />
     <Cart />
 
     <section class="hero-section">
@@ -18,7 +17,7 @@
     </section>
 
 
-    <section class="intro-banner">
+    <section class="intro-banner" ref="introBanner">
   <div class="intro-content">
     <h2>Our Journey in Crafting Elegance</h2>
     <p>Since our founding, we have dedicated ourselves to creating socks that embody both
@@ -58,15 +57,55 @@
     <section class="product-gallery">
       <h2>Best Sellers</h2>
       <div class="product-grid">
-        <div v-for="product in products" :key="product.id" class="product-card">
+        <div v-for="product in bestSellers" :key="product.id" class="product-card">
           <img :src="product.image" :alt="product.name" class="product-image" />
-          <h3>{{ product.name }}</h3>
+          <h3>{{ product.name || 'Unnamed product' }}</h3>
           <p>{{ product.description }}</p>
-          <p class="price">{{ product.price }} SEK</p>
+          <p class="price">{{ product.price ? product.price + ' SEK' : '' }}</p>
           <button @click="addToCart(product)">Add to Cart</button>
         </div>
       </div>
     </section>
+
+    <section class="elegant-products">
+      <h2>Elegant Products</h2>
+      <div class="elegant-layout">
+      <div class="elegant-list">
+        <div v-for="product in elegantProducts"
+        :key="product.id"
+        class="elegant-card">
+
+        <img :src="product.image" :alt="product.name" class="elegant-image"
+        @click="openImage(product.image)" />
+        <div class="elegant-info">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <p class="price">{{ product.price ? product.price + 'SEK' : '' }}</p>
+          <button @click="addToCart(product)">Add To Cart</button>
+        </div>
+      </div>
+      </div>
+
+      <aside class="sticky-panel">
+        <h3>Elegance is in Simplicity </h3>
+        <p> Discover our premium collection crafted with timeless design, 
+            luxurious fabrics, and unbeatable comfort.</p>
+            <ul>
+              <li>Finest Material</li>
+              <li>Timeless Business Style</li>
+              <li>Designed in Scandinavia</li>
+              <li>Attention to Detail</li>
+              <li>Sustainable Luxury</li>
+              <li>Effortless Style</li>
+              <li>Minimalist Lines</li>
+            </ul>
+      </aside>
+      </div>
+    </section>
+
+    <div v-if="fullscreenImage" class="fullscreen-overlay" @click="closeImage">
+      <img :src="fullscreenImage" alt="Fullscreen" />
+    </div>
 
     <!-- PROMO SEKCIJA / WOW EFEKT -->
     <section class="promo-section">
@@ -92,50 +131,56 @@
       </div>
     </section>
 
-    <Footer />
-
   </div>
 </template>
 
 <script setup>
-import Navbar from '@/components/Navbar.vue';
+
+
+
 import Cart from '../components/Cart.vue';
-import Footer from '@/components/Footer.vue';
-import { ref } from 'vue';
+import { onMounted, computed, ref } from 'vue';
+import { useCartStore } from '@/store/cart';
 
 
 
-import stripedSocks from '../assets/images/striped-socks.jpg'
-import classicSocks from '../assets/images/classic-socks.jpg'
-import blackClassicSocks from '../assets/images/black-classic-socks.jpg'
+const introBanner = ref(null)
 
-const products = ref([
-  {
-    id: 1,
-    name: 'Classic Black',
-    image: blackClassicSocks,
-    description: 'Elegant black socks, perfect for formal attire.',
-    price: 79
-  },
-  {
-    id: 2,
-    name: 'Striped Elegance',
-    image: stripedSocks,
-    description: 'Subtle stripes for a touch of sophistication.',
-    price: 89
-  },
-  {
-    id: 3,
-    name: 'Luxury Cotton',
-    image: classicSocks,
-    description: 'Soft cotton with a comfortable fit for all-day wear.',
-    price: 99
-  },
-]);
+onMounted(() => {
+  const banner = introBanner.value;
+  const hero = document.querySelector('.hero-section');
 
-const addToCart = (product) => {
-  console.log(`${product.name} added to cart`);
-};
+  const spacing = -850;
+  const heroHeight = hero.offsetHeight;
+
+  const finalPosition = heroHeight + spacing;
+  const startPosition = finalPosition - 1000;
+
+  banner.style.transform = `translateY(${startPosition}px)`;
+  banner.style.opacity = '0';
+
+  setTimeout(() => {
+    banner.style.transition = 'transform 3s cubic-bezier(0.25,0.1,0.25,1), opacity 3s ease-out';
+    banner.style.transform = `translateY(${finalPosition}px)`;
+    banner.style.opacity = '1';
+  }, 100);
+})
+
+
+const store = useCartStore()
+
+const featuredIds = [21, 22, 23]
+const bestSellers = computed(() => store.products.filter(p => featuredIds.includes(p.id)))
+
+const elegantProducts = computed(() => store.products.filter(p => p.category === 'elegant'))
+
+const addToCart = (product) => store.addToCart(product)
+
+const fullscreenImage = ref(null)
+const openImage = (src) => { fullscreenImage.value = src }
+const closeImage = () => { fullscreenImage.value = null }
+
+
 </script>
 
 <style scoped>
@@ -143,33 +188,36 @@ const addToCart = (product) => {
 .hero-section {
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 75vh;
   overflow: hidden;
   display: flex;
   align-items: flex-start;
-  padding-bottom: 100px;
+  padding-bottom: 0;
 }
 
-.hero-media img {
-  position: absolute;
-  top: 0%;
-  left: 0;
-  width: 100%;
-  height: 60%;
-  object-fit: cover;
-  z-index: 1;
-}
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 500px;
+  max-width: 800px;
   background-color: rgba(10, 25, 50, 0.85);
-  padding: 30px 25px;
+  padding: 25px 25px;
   border-radius: 12px;
   margin: 40px 20px 0 20px;
   color: #fff;
 }
+
+.hero-media img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 1;
+}
+
+
 
 .hero-content h1 {
   font-size: 3rem;
@@ -197,20 +245,36 @@ const addToCart = (product) => {
 }
 
 .intro-banner {
-  width: 100%;
-  padding: 80px 20px;
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  margin: -300px auto 60px auto;
+  padding: 60px 50px;
   background: linear-gradient(135deg, #1b263b 0%, #2c3e50 100%);
   color: #fff;
-  border-radius: 16px;
-  margin: -350px 0 60px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  z-index: 3;
   text-align: center;
+ 
 }
 
+.intro-banner h2 {
+  font-size: 2.8rem;
+  line-height: 1.4;
+  margin-bottom: 25px;
+  color: #dfe9ef;
+}
+
+.intro-banner p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #dfe9ef;
+}
+
+
 .intro-content {
-  max-width: 900px;
+  max-width: 1200px;
 }
 
 .intro-content h2 {
@@ -324,6 +388,139 @@ const addToCart = (product) => {
 .product-card button:hover {
   background: #4a90e2;
 }
+
+.elegant-products {
+  margin: 60px 20px;
+  padding: 40px 20px;
+  background: #ffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.elegant-products h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #1b263b;
+  margin-bottom: 40px;
+}
+
+.elegant-list {
+ flex: 3;
+ display: flex;
+ flex-direction: column;
+ gap: 25px;
+}
+
+.elegant-card {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: #f9f9f9;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.elegant-card:hover {
+  transform: translateY(-5px);
+}
+
+.elegant-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.elegant-info {
+  flex: 1;
+}
+
+.elegant-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.elegant-info .price {
+  font-weight: bold;
+  color: #4a90e2;
+  margin-bottom: 15px;
+}
+
+.elegant-info button {
+  background: #2c3e50;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.elegant-info button:hover {
+  background: #4a90e2;
+}
+
+.elegant-layout {
+  display: flex;
+  gap: 40px;
+}
+
+.sticky-panel {
+  flex: 1;
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+  background: #1b263b;
+  color: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  
+}
+
+.sticky-panel h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #d4af37
+}
+
+.sticky-panel ul {
+  margin-top: 15px;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.sticky-panel li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+
+}
+
+.fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  cursor: zoom-out;
+}
+
+.fullscreen-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+
+
+
 
 
 .promo-section {

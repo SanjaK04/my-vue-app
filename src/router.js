@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from './pages/Home.vue'
-
-import Elegant from './pages/Elegant.vue'
-import Winter from './pages/Winter.vue'
-import Sports from './pages/Sports.vue'
+import Home from '@/pages/Home.vue'
+import SearchFilter from '@/pages/SearchFilter.vue'
+import Elegant from '@/pages/Elegant.vue'
+import Winter from '@/pages/Winter.vue'
+import Sports from '@/pages/Sports.vue'
 
 
 
@@ -13,7 +13,13 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  
+
+   {
+    path: '/searchFilter',
+    name: 'SearchFilter',
+    component: SearchFilter
+
+   },
 
   {
     path: '/elegant',

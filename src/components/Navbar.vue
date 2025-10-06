@@ -2,14 +2,14 @@
   <div class="navbar">
           
     <router-link to="/" class="navbutton">Home</router-link>
-    <router-link to="/searchFilter">Search Filter</router-link>
+
     <router-link to="/elegant" class="navbutton">Elegant</router-link>
     <router-link to="/winter" class="navbutton">Winter</router-link>
     <router-link to="/sports" class="navbutton">Sports</router-link>
 
     <div class="search-container">
       <input v-model="searchQuery" @keyup.enter="doSearch" type="text" placeholder="Search for socks"/>
-      <button @click="doSearch"></button>
+      <button @click="doSearch">Search</button>
     
     </div>
   </div>
@@ -22,13 +22,6 @@ import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 
 const searchQuery = ref("")
-
-
-const products = [
-  { id: 1, name: "black socks" },
-  { id: 2, name: "white socks" },
-  { id: 3, name: "cotton socks" }
-]
 
 
 
@@ -45,7 +38,7 @@ const router = useRouter()                               // opcionalno: funkcija
 function doSearch() {
 
   if (searchQuery.value.trim() !== "") {
-    router.push({ path: "/search", query: { q: searchQuery.value } })
+    router.push({ path: "./searchFilter", query: { q: searchQuery.value } })
   }
 }
 

@@ -158,70 +158,7 @@ body {
 }
 
 
-.product-display {
-  display: flex;
-  flex-direction: column;
-  align-items: center;     
-  gap: 40px;               
-  padding: 60px 20px;      
-  max-width: 1200px;       
-  margin: 0 auto;          
-}
 
-
-.product-container {
-  display: flex;
-  align-items: stretch;           /* slika i tekst iste visine */
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  width: 90%;
-  max-width: 1000px;
-  min-height: 300px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-}
-
-.product-image {
-  flex: 0.8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f7f4;
-}
-
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.product-info {
-  flex: 1.2;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-}
-
-
-.product-info h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #333;
-  font-weight: 600;
-}
-
-.product-info p {
-  font-size: 1rem;
-  color: #666;
-}
 
 .cart {
   position: fixed;                 /* ostaje u gornjem desnom kutu čak i kad scrollaš */

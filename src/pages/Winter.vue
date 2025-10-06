@@ -1,7 +1,7 @@
 <template>
   <div class="winter-wrapper">
 
-  <Navbar />
+ 
   <Cart />
 
   <section class="winter-hero">
@@ -79,7 +79,7 @@
     </section>
   </div>
 
-    <Footer />
+
 
     <div v-if="showPromo" class="promo-overlay" @click.self="closePromo">
       <div class="promo-popup">
@@ -97,10 +97,9 @@
 
 <script setup>
 
-import Navbar from '@/components/Navbar.vue';
 import Cart from '../components/Cart.vue';
 import { ref, onMounted } from 'vue';
-import Footer from '@/components/Footer.vue';
+
 import cozySocks from '../assets/images/cozy-socks.jpg'
 import warmHugSocks  from '../assets/images/warm-hug-socks.jpg'
 import chillChasersSocks from '../assets/images/chill-chasers-socks.jpg'
@@ -112,7 +111,7 @@ import winterShoes1 from '../assets/images/winter-shoes1.jpg'
 import winterShoes2 from '../assets/images/winter-shoes2.jpg'
 import winterBlog4 from '../assets/images/winter-blog4.jpg'
 import winterBlog2 from '../assets/images/winter-blog2.jpg'
-import autumnBlog1 from '../assets/images/autumn-blog1.jpg'  
+
 import blogSki from '../assets/images/blog-ski.jpg'
 import winterBlog3 from '../assets/images/winter-blog3.jpg'
 import blogChristmas from '../assets/images/blog-christmas.jpg'

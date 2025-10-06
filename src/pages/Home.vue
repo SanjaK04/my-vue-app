@@ -1,7 +1,7 @@
 <template>
   <div class="home-wrapper">
-    <Navbar />
 
+    <!-- HERO SECTION -->
     <section class="hero-section">
       <video autoplay muted loop class="hero-video">
         <source src="../assets/videos/video-shoes1.mp4" type="video/mp4" />
@@ -10,19 +10,20 @@
       <div class="hero-content">
         <h1>Elevate Your Style with Elegant Socks</h1>
         <p>Discover our exclusive collection of premium socks designed for the modern gentleman.</p>
-        <button class="hero-btn">Shop Collection</button>
+        <!-- Gumb vodi na stranicu kolekcije -->
+        <button class="hero-btn" @click="goToCollection('Elegant')">Shop Collection</button>
       </div>
     </section>
 
-    
+    <!-- SEARCH FILTER -->
     <section class="search-section">
       <SearchFilter
-        :items="store.products"
+        :items="store.products.filter(p => p.featured && p.showOnHome !== false)"
         @update:filtered="filteredProducts = $event"
       />
     </section>
 
-   
+    <!-- CATEGORIES -->
     <section class="categories">
       <div class="category-card">
         <h3>Business</h3>
@@ -38,26 +39,29 @@
       </div>
     </section>
 
-    
+    <!-- BEST SELLERS / PRODUCTS -->
     <section class="best-sellers">
       <h2>Best Sellers</h2>
-       <section class="home-product-section">
+      <section class="home-product-section">
         <ProductCard
-          v-for="product in filteredProducts"
+          v-for="(product, index) in filteredProducts"
           :key="product.id"
           :product="product"
-          :exploreCollection="store.addToCart"/>
+          :exploreCollection="store.exploreCollection" 
+          :index="index"
+          mode="default"
+        />
       </section>
     </section>
 
-   
+    <!-- PROMO BANNER -->
     <section class="promo-banner">
       <h2>Special Offer</h2>
       <p>Get 20% off your first order. Limited time only.</p>
       <button class="promo-btn">Claim Offer</button>
     </section>
 
-  
+    <!-- BLOG / ARTICLES -->
     <section class="blog-section">
       <h2>From Our Journal</h2>
       <div class="blog-grid">
@@ -72,7 +76,7 @@
       </div>
     </section>
 
-    
+    <!-- NEWSLETTER -->
     <section class="newsletter">
       <h2>Join Our Inner Circle</h2>
       <p>Exclusive offers, early access, and style tips—straight to your inbox.</p>
@@ -82,27 +86,33 @@
       </div>
     </section>
 
-    
+    <!-- CART COMPONENT -->
     <Cart :cart="store.cart" />
-    <Footer />
+
   </div>
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue'
-import Cart from '../components/Cart.vue'
-import ProductCard from '@/components/ProductCard.vue'
-import Footer from '../components/Footer.vue'
-import SearchFilter from '@/components/SearchFilter.vue'
-import { useCartStore } from '@/store/cart'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useCartStore } from '@/store/cart'
+
+import ProductCard from '@/components/ProductCard.vue'
+import SearchFilter from '@/pages/SearchFilter.vue'
+import Cart from '@/components/Cart.vue'
 
 const store = useCartStore()
-const filteredProducts = ref([...store.products])
+const router = useRouter()
+
+const filteredProducts = ref(store.products.filter(p => p.featured))
+
+// Funkcija za navigaciju na stranicu kolekcije
+const goToCollection = (collectionName) => {
+  router.push({ name: collectionName }) // npr. 'sports' ili 'elegant'
+}
 </script>
 
 <style scoped>
-
 .hero-section {
   position: relative;
   height: 80vh;
@@ -146,67 +156,6 @@ const filteredProducts = ref([...store.products])
   transform: translateY(-3px);
 }
 
-
-.home-product-section {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
-  display: grid;
-  gap: 60px;
-}
-.home-product-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "image info";
-  gap: 32px;
-  align-items: center;
-  background: #fff;
-  padding: 28px;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(23, 34, 45, 0.06);
-}
-.home-product-row.reverse {
-  grid-template-areas: "info image";
-}
-.home-product-image { grid-area: image; }
-.home-product-info {
-  grid-area: info;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.home-product-image img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-.home-product-info h2 {
-  margin: 0 0 12px;
-  color: #1b263b;
-  font-size: 1.6rem;
-}
-.home-product-info p {
-  color: #444;
-}
-.home-product-info .button {
-  align-self: center;
-  width: fit-content;
-  max-width: 200px;
-  padding: 12px 24px;
-  color: #fff;
-  border-radius: 26px;
-  background: #d4af37;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-top: 25px;
-}
-.home-product-info .button:hover {
-  transform: translateY(-3px);
-}
-
-
 .categories {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -222,7 +171,6 @@ const filteredProducts = ref([...store.products])
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-
 .best-sellers {
   padding: 80px 20px;
   text-align: center;
@@ -232,7 +180,6 @@ const filteredProducts = ref([...store.products])
   margin-bottom: 40px;
   color: #1b263b;
 }
-
 
 .promo-banner {
   background: linear-gradient(135deg, #1b263b, #2c3e50);
@@ -252,7 +199,6 @@ const filteredProducts = ref([...store.products])
   font-size: 1.1rem;
 }
 
-
 .blog-section {
   padding: 80px 20px;
   background: #f5f5f5;
@@ -263,13 +209,6 @@ const filteredProducts = ref([...store.products])
   gap: 25px;
   margin-top: 30px;
 }
-.blog-card {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
 
 .newsletter {
   text-align: center;
