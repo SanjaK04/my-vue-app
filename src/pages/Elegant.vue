@@ -86,6 +86,7 @@
       </div>
       </div>
 
+
       <aside class="sticky-panel">
         <h3>Elegance is in Simplicity </h3>
         <p> Discover our premium collection crafted with timeless design, 
@@ -102,6 +103,7 @@
       </aside>
       </div>
     </section>
+    
 
     <div v-if="fullscreenImage" class="fullscreen-overlay" @click="closeImage">
       <img :src="fullscreenImage" alt="Fullscreen" />
@@ -114,8 +116,7 @@
         <p>Make your first purchase today and get <strong>20% OFF</strong> our premium collection!</p>
         <button class="promo-btn">Shop Now</button>
       </div>
-      <!-- Ubaci sliku / ilustraciju za elegantni wow efekt -->
-      <!-- Example: <img src="src/assets/images/promo-elegant.jpg" alt="Elegant promo"> -->
+    <img src="/src/assets/images/" alt="Elegant promo"> 
     </section>
 
     
@@ -157,7 +158,7 @@ onMounted(() => {
  const heroBottom = hero.offsetTop + hero.offsetHeight;
  const bannerTop = banner.offsetTop
 
- const stopOffset = -50;
+ const stopOffset = -200;
  const stopPosition = heroBottom - bannerTop + stopOffset;
 
   setTimeout(() => {
@@ -302,13 +303,18 @@ const closeImage = () => { fullscreenImage.value = null }
 
 
 .features-section {
+  position: relative;
   display: flex;
   justify-content: space-around;
   margin: 120px 20px;
-  gap: 20xp;
+  gap: 20px;
   z-index: 2;
-  position: relative;
-}
+  background: linear-gradient(135deg, #f2f6fa, #dce3ea);
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  padding: 80px 40px;
+ }
 
 .feature-card {
   background: #fff;

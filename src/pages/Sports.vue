@@ -2,7 +2,6 @@
 <template>
   <div class="sports-page">
 
-    <!-- HERO SECTION -->
     <section class="hero-section">
       <div class="hero-content">
         <h1>Gear Up for Your Active Lifestyle</h1>
@@ -10,19 +9,17 @@
         <button class="hero-btn">Shop Sports Collection</button>
       </div>
       <div class="hero-image">
-        <img src="../assets/images/home-socks2.jpg" alt="Sports Collection" />
+        <img src="../assets/images/sports-socks2.jpg" alt="Sports Collection" />
       </div>
     </section>
 
-    <!-- FILTERS -->
     <section class="search-section">
       <SearchFilter
         :items="store.products.filter(p => p.category === 'sports')"
         @update:filtered="filteredProducts = $event"
       />
     </section>
-
-    <!-- SPORTS PRODUCTS -->
+  
     <section class="sports-products">
       <h2>Sports Collection</h2>
       <div class="sports-list">
@@ -31,7 +28,7 @@
           :key="product.id"
           class="sports-card"
         >
-          <img :src="product.image" :alt="product.name" class="sports-image"/>
+          <img :src="product.image" :alt="product.name" class="sports-image" @click="openImage(product.image)"/>
           <div class="sports-info">
             <h3>{{ product.name }}</h3>
             <p>{{ product.description }}</p>
@@ -42,14 +39,15 @@
       </div>
     </section>
 
-    <!-- PROMO BANNER -->
+    
+
     <section class="sports-promo-banner">
       <h2>Special Sports Offer</h2>
       <p>Get 15% off your first sports order. Limited time only!</p>
       <button class="sports-promo-btn">Claim Offer</button>
     </section>
 
-    <!-- BLOG / TIPS -->
+
     <section class="sports-blog-section">
       <h2>Sports Tips & Guides</h2>
       <div class="sports-blog-grid">
@@ -64,7 +62,7 @@
       </div>
     </section>
 
-    <!-- NEWSLETTER -->
+
     <section class="sports-newsletter">
       <h2>Stay Active & Updated</h2>
       <p>Sign up for exclusive sports offers and training tips.</p>
@@ -74,45 +72,61 @@
       </div>
     </section>
 
+   
     <Cart :cart="store.cart" />
+
+    <div v-if="fullscreenImage" class="fullscreen-overlay" @click="closeImage">
+  <img :src="fullscreenImage" alt="Fullscreen" class="fullscreen-img" />
+</div>
 
   </div>
 </template>
 
 <script setup>
+
+
 import { ref } from 'vue'
 import { useCartStore } from '@/store/cart'
 import SearchFilter from '@/pages/SearchFilter.vue'
 import Cart from '@/components/Cart.vue'
 
+
 const store = useCartStore()
 const filteredProducts = ref(store.products.filter(p => p.category === 'sports'))
 
 const addToCart = (product) => store.addToCart(product)
+
+const fullscreenImage = ref(null)
+const openImage = (src) => { fullscreenImage.value = src }
+const closeImage = () => { fullscreenImage.value = null }
+
+
+
 </script>
 
 <style scoped>
-/* HERO SECTION */
+
 .hero-section {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 60px 20px;
   background: linear-gradient(120deg, #e8f0f8, #d4f0ff);
-  gap: 30px;
+  gap: 50px;
   border-radius: 20px;
   height: 60vh;
 }
 .hero-content {
-  max-width: 500px;
+  max-width: 450px;
+  text-align: left;
 }
 .hero-content h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #1b263b;
   margin-bottom: 15px;
 }
 .hero-content p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin-bottom: 20px;
 }
 .hero-btn {
@@ -130,14 +144,16 @@ const addToCart = (product) => store.addToCart(product)
 }
 .hero-image img {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   border-radius: 20px;
   object-fit: cover;
-  height: 50vh;
+  height: 55vh;
   box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  margin-left: -50px;
+  display: block;
 }
 
-/* SPORTS PRODUCTS LIST */
+
 .sports-products {
   margin: 60px 20px;
   padding: 40px 20px;
@@ -208,7 +224,36 @@ const addToCart = (product) => store.addToCart(product)
   transform: scale(1.05);
 }
 
-/* PROMO BANNER */
+
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: zoom-out;
+}
+
+.fullscreen-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.fullscreen-img:hover {
+  transform: scale(1.02);
+}
+
+
+
 .sports-promo-banner {
   margin: 60px 20px;
   padding: 50px 20px;
@@ -241,7 +286,7 @@ const addToCart = (product) => store.addToCart(product)
   transform: scale(1.05);
 }
 
-/* BLOG SECTION */
+
 .sports-blog-section {
   padding: 60px 20px;
   background: #f5f5f5;
@@ -259,7 +304,7 @@ const addToCart = (product) => store.addToCart(product)
   gap: 25px;
 }
 
-/* NEWSLETTER */
+
 .sports-newsletter {
   text-align: center;
   padding: 60px 20px;
@@ -289,5 +334,7 @@ const addToCart = (product) => store.addToCart(product)
   background: #b8912f;
   transform: scale(1.05);
 }
-  </style>
+
+
+</style>
 

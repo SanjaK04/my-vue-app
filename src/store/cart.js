@@ -2,7 +2,7 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-
+import { toast } from '../main.js'
 
 import niceSocks from "../assets/images/nice_socks.jpg";
 import gentlemansTouchSocks from "../assets/images/gentlemans-touch-socks.jpg";
@@ -56,7 +56,8 @@ export const useCartStore = defineStore("cart", () => {
       inventory: 0,
       description: "For energetic moments – socks that move with every step.",
       cart: 0,
-      color: "grey",
+      price: 55,
+      color: "white",
       material: "cotton",
       collectionRoute: "Sports"
     },
@@ -96,7 +97,8 @@ export const useCartStore = defineStore("cart", () => {
       inventory: 20,
       description: "With attention to fit and comfort, these socks turn everyday wear into a refined, effortless experience.",
       cart: 0,
-      color: "white",
+      price:  89,
+      color: "grey",
       material: "cotton"
     },
 
@@ -107,7 +109,9 @@ export const useCartStore = defineStore("cart", () => {
       category: "sports",
       inventory: 38,
       description: "Durable and flexible, they are made to handle both active days and relaxed weekends.",
-      color: "grey",
+      color: "white",
+      cart: 0,
+      price: 120,
       material: "polyester"
     },
 
@@ -118,7 +122,9 @@ export const useCartStore = defineStore("cart", () => {
       category: "sports",
       inventory: 29,
       description:  "Designed for movement, they stay in place while keeping your feet cool and dry during activity.",
-      color: "black",
+      color: "grey",
+      cart: 0,
+      price: 180,
       material: "cotton"
 
     },
@@ -129,7 +135,9 @@ export const useCartStore = defineStore("cart", () => {
       category: "sports",
       inventory: 88,
       description: "Classic, versatile pieces for the modern professional.",
-      color: "grey",
+      color: "black",
+      cart: 0,
+      price: 145,
       material: "polyester"
     },
 
@@ -138,9 +146,9 @@ export const useCartStore = defineStore("cart", () => {
       name: "Elegance",
       image: be1,
       category: "elegant",
-      inventory: 63,
+      inventory: 0,
       description: "With attention to detail and understated elegance, these socks are the silent signature of a true gentleman.",
-      color: "",
+      color: "black",
       material: "cotton",
       price: 299
     },
@@ -163,7 +171,7 @@ export const useCartStore = defineStore("cart", () => {
       category: "elegant",
       inventory: 72,
       description: "Every stitch and seam is meticulously crafted to ensure quality and sophistication.",
-      color: "",
+      color: "black",
       material: "wool",
       price: 459
     },
@@ -175,7 +183,7 @@ export const useCartStore = defineStore("cart", () => {
       category: "elegant",
       inventory: 39,
       description: "We prioritize eco-conscious materials and ethical practices, so your style is as responsible as it is refined.",
-      color: "",
+      color: "grey",
       material: "cotton",
       price: 240
     },
@@ -294,7 +302,7 @@ export const useCartStore = defineStore("cart", () => {
     description: 'Subtle stripes for a touch of sophistication.',
     price: 89,
     cart: 0,
-    color: "grey",
+    color: "brown",
     material: "cotton"
 },
 {
@@ -308,13 +316,12 @@ export const useCartStore = defineStore("cart", () => {
   description: 'Soft cotton with a comfortable fit for all-day wear.',
   price: 99,
   cart: 0,
-  color: "white",
+  color: "black",
   material: "cotton"
 }
 
+ ]);
 
-
-  ]);
 
   const router = useRouter()
   const cart = ref([]);
@@ -324,14 +331,25 @@ export const useCartStore = defineStore("cart", () => {
 
   const addToCart = (product) => {
     const existing = cart.value.find(p => p.id === product.id)
+
+    const availableStock = product.inventory || 0
+    const currentQuantity = existing ? existing.quantity : 0
+
+
+      if (currentQuantity + 1 > availableStock) {
+        toast.error("Not enough stoock")
+        return
+      }
+
       if (existing) {
         existing.quantity += 1
+        toast.success(`${product.name} quantity updated`)
       } else {
-        cart.value.push({
-          ...product, quantity: 1
-        })
-      }
+        cart.value.push({...product, quantity: 1 })
+        toast.success(`${product.name} added to cart`)
+      } 
   }
+
 
   const removeFromCart = (productId) => {
     cart.value = cart.value.filter(item => item.id !== productId)
@@ -339,12 +357,14 @@ export const useCartStore = defineStore("cart", () => {
   
   const totalQuantity = computed (() => 
   cart.value.reduce((sum, item) => sum + item.quantity, 0)
-)
+ )
 
 
-const totalPrice = computed (() => 
-cart.value.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0)
-)
+  const totalPrice = computed (() => 
+  cart.value.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0)
+ )
 
   return { products, cart, addToCart, removeFromCart, totalQuantity, totalPrice};
 });
+
+
