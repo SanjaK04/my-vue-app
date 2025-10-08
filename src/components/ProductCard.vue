@@ -135,6 +135,4 @@ const getVariantColor = (color) => {
 }
 
 
-
-
 </style>

@@ -235,7 +235,7 @@ export const useCartStore = defineStore("cart", () => {
     {
       id: 17,
       name: "Snow",
-      image: ws1,
+      photo: ws1,
       category: "winter",
       inventory: 76,
       description: "Our winter socks are crafted from soft wool blends, keeping your feet warm and cozy in cold weather.",
@@ -246,7 +246,7 @@ export const useCartStore = defineStore("cart", () => {
     {
       id: 18,
       name: "Snowflake",
-      image: ws2,
+      photo: ws2,
       category: "winter",
       inventory: 78,
       description: "Designed with subtle patterns and classic colors, they combine functionality with timeless style.",
@@ -257,7 +257,7 @@ export const useCartStore = defineStore("cart", () => {
      {
       id: 19,
       name: "Playing",
-      image: ws3,
+      photo: ws3,
       category: "winter",
       inventory: 79,
       description: "Breathable yet insulating, they maintain the perfect temperature without overheating.",
@@ -269,7 +269,7 @@ export const useCartStore = defineStore("cart", () => {
      {
       id: 20,
       name: "Snow",
-      image: ws4,
+      photo: ws4,
       category: "winter",
       inventory: 76,
       description: "Extra cushioning provides comfort for long walks, cozy evenings, or outdoor adventures.",

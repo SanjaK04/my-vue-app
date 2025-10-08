@@ -1,9 +1,6 @@
 <template>
   <div class="winter-wrapper">
 
- 
-  <Cart />
-
   <section class="winter-hero">
      <h1>Keep Your Feet Warm This Winter!</h1>
                   <p>Discover our cozy socks collection and enjoy comfort all season long.</p>
@@ -67,6 +64,24 @@
 </section>
 
 
+    <section class="winter-products">
+      <h2>Winter Socks</h2>
+      <div class="product-grid">
+        <div v-for="product in winterProducts"
+        :key="product.id"
+        class="shop-card">
+
+        <img :src="product.photo" :alt="product.name" class="product-photo" @click="openImage(product.photo)" />
+
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <p class="price">{{ product.price }} SEK</p>
+          <button class="add-btn" @click="addToCart(product)">Add To Cart</button>
+        </div>
+      </div>
+
+
+    </section>
 
     <section class="product-gallery">
       <div v-for="product in products" :key="product.id" class="shop-card">
@@ -74,11 +89,10 @@
         <h3>{{ product.name }}</h3>
         <p>{{ product.description }}</p>
         <p class="price">{{ product.price }} SEK</p>
-        <button @click="addToCart(product)">Add to cart</button>
+        <button class="add-btn" @click="addToCart(product)">Add to cart</button>
       </div>
     </section>
   </div>
-
 
 
     <div v-if="showPromo" class="promo-overlay" @click.self="closePromo">
@@ -97,8 +111,8 @@
 
 <script setup>
 
-import Cart from '../components/Cart.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useCartStore } from '@/store/cart';
 
 import cozySocks from '../assets/images/cozy-socks.jpg'
 import warmHugSocks  from '../assets/images/warm-hug-socks.jpg'
@@ -118,6 +132,11 @@ import blogChristmas from '../assets/images/blog-christmas.jpg'
 
 import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
+
+const store = useCartStore() 
+const winterProducts = computed(() =>store.products.filter(product => product.category === 'winter'))
+
+
 
 const slides = [
 
@@ -266,6 +285,95 @@ const addToCart = (product) => {
 
 <style scoped>
 
+
+
+.winter-hero {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  padding: 80px 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3a506b, #5bc0be);      /* hladni zimski gradient */
+  overflow: hidden;
+  margin-top: 5%;
+}
+
+.winter-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/snowflakes.png');      /* lagane pahulje preko heroja */
+  background-repeat: repeat;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+
+}
+
+.winter-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+}
+
+.winter-hero p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  line-height: 1.5;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+.winter-hero .shop-now {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #ff6b6b;              /* kontrastna toplija boja */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.winter-hero .shop-now:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.winter-page {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+}
+
+.winter-page .hero {
+  text-align: center;
+  background-color: #f0f0f0;
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.winter-page .hero h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.winter-page .hero p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+
+
 .carousel-container {
  padding: 20px 0;
  border-radius: 0;
@@ -325,11 +433,11 @@ const addToCart = (product) => {
 
 
 :deep(.carousel__pagination-button) {
-  background-color: #2c6e49;
+  background-color: #5bc0be;
 }
 
 :deep(.carousel__pagination-button--active) {
-  background-color: #a1d9a5;                 /* aktivni indikator */
+  background-color: #3a506b;                 /* aktivni indikator */
 }
 
 
@@ -351,7 +459,7 @@ const addToCart = (product) => {
 
 
 .highlight-section {
-  background-color: #d4f0d6;
+  background-color: #edf6f9;
   padding: 50px 20px;
   border-radius: 16px;
   margin: 40px 0;
@@ -369,14 +477,14 @@ const addToCart = (product) => {
 .highlight-content h2 {
   font-size: 2rem;
   margin-bottom: 15px;
-  color: #2c6e49;
+  color: #3a506b;
   font-weight: 700;
 }
 
 .highlight-content p {
   font-size: 1.1rem;
   margin-bottom: 25px;
-  color: #333;
+  color: #1e3d34;
   line-height: 1.6;
 }
 
@@ -479,6 +587,86 @@ const addToCart = (product) => {
   transform: translateY(-2px);
 }
 
+.winter-products {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.winter-products h2 {
+  font-size: 2rem;
+  color: #2c6e49;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.shop-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.product-photo {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.shop-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e3d34;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.shop-card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c6e49;
+}
+
+.add-btn {
+  margin-top: 10px;
+  padding: 10px 22px;
+  background-color: #2c6e49;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #23563b;
+  transform: scale(1.04);
+}
 
 
 .modal-overlay {
@@ -584,19 +772,65 @@ const addToCart = (product) => {
 
 
 .shop-card {
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: #fefefe;
+  border-radius: 14px;
+  padding: 20px;
   text-align: center;
-  padding: 15px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+
 }
 
-.product-photo {
+.shop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.shop-card img.product-photo {
   width: 100%;
-  height: 250px;
+  height: 260px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+  
+.shop-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e3d34;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.shop-card p {
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.shop-card .price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c6e49;
+}
+
+.add-btn {
+  margin-top: 10px;
+  padding: 10px 22px;
+  background-color: #2c6e49;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #23563b;
+  transform: scale(1.04);
 }
 
 .promo-overlay {

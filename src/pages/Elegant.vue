@@ -1,13 +1,12 @@
 <template>
   <div class="elegant-socks-wrapper">
 
-    <Cart />
 
     <section class="hero-section">
       <div class="hero-content">
         <h1>Step Into Elegance & Comfort</h1>
         <p>Premium socks designed for men who value style, confidence, and all-day comfort.</p>
-        <button class="cta-btn">Shop Collection</button>
+        <button class="cta-btn" @click="scrollToElegant">Shop Collection</button>
       </div>
       <div class="hero-media">
         
@@ -67,7 +66,7 @@
       </div>
     </section>
 
-    <section class="elegant-products">
+    <section class="elegant-products" ref="elegantSection">
       <h2>Elegant Products</h2>
       <div class="elegant-layout">
       <div class="elegant-list">
@@ -116,8 +115,11 @@
         <p>Make your first purchase today and get <strong>20% OFF</strong> our premium collection!</p>
         <button class="promo-btn">Shop Now</button>
       </div>
-    <img src="/src/assets/images/" alt="Elegant promo"> 
-    </section>
+
+      <div class="promo-image-wrapper">
+    <img src="/src/assets/images/elegant-promo.jpg" alt="Elegant promo" class="promo-image" /> 
+     </div>
+  </section>
 
     
     <section class="testimonial-section">
@@ -138,13 +140,18 @@
 <script setup>
 
 
-
-import Cart from '../components/Cart.vue';
 import { onMounted, computed, ref } from 'vue';
 import { useCartStore } from '@/store/cart';
 
 
 
+const elegantSection = ref(null);
+
+const scrollToElegant = () => {
+  if (elegantSection.value) {
+  elegantSection.value.scrollIntoView({ behavior: 'smooth', block: 'start'})
+}
+}
 const introBanner = ref(null)
 
 onMounted(() => {
@@ -158,7 +165,7 @@ onMounted(() => {
  const heroBottom = hero.offsetTop + hero.offsetHeight;
  const bannerTop = banner.offsetTop
 
- const stopOffset = -200;
+ const stopOffset = -100;
  const stopPosition = heroBottom - bannerTop + stopOffset;
 
   setTimeout(() => {
@@ -202,6 +209,7 @@ const closeImage = () => { fullscreenImage.value = null }
   position: relative;
   z-index: 2;
   max-width: 800px;
+  top: 10%;
   background-color: rgba(10, 25, 50, 0.85);
   padding: 25px 25px;
   border-radius: 12px;
@@ -214,7 +222,7 @@ const closeImage = () => { fullscreenImage.value = null }
   height: 70%;
   object-fit: cover;
   position: absolute;
-  top:0;
+  top:10%;
   left: 0;
   z-index: 1;
 }
@@ -370,7 +378,7 @@ const closeImage = () => { fullscreenImage.value = null }
 
 .product-image {
   width: 100%;
-  height: 250px;
+  height: 350px;
   object-fit: cover;
   border-radius: 16px;
   margin-bottom: 15px;
@@ -434,8 +442,8 @@ const closeImage = () => { fullscreenImage.value = null }
 }
 
 .elegant-image {
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 400px;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -527,45 +535,74 @@ const closeImage = () => { fullscreenImage.value = null }
 
 
 .promo-section {
-  background: linear-gradient(135deg, #2c3e50, #4a90e2);
-  color: #fff;
-  padding: 60px 40px;
-  margin: 60px 20px;
-  border-radius: 20px;
-  text-align: center;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #1b263b, #2c3e50 50%, #4a90e2 100%);
+  color: #fff;
+  padding: 80px 60px;
+  margin: 100px 20px;
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-content {
+  flex: 1;
+  max-width: 600px;
+  z-index: 2;
 }
 
 .promo-content h2 {
-  display: flex;
-  justify-content: center;
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #d4af37;
+  letter-spacing: 1px;
 }
 
 .promo-content p {
-  font-size: 1.2rem;
-  margin-bottom: 25px;
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  color: #f2f6fa;
 }
 
 .promo-btn {
-  background: #fff;
-  color: #2c3e50;
+  background: #d4af37;
+  color: #1b263b;
   border: none;
-  padding: 14px 28px;
-  border-radius: 30px;
+  padding: 14px 32px;
+  border-radius: 40px;
   font-size: 1.1rem;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .promo-btn:hover {
-  background: #50e3c2;
-  color: #fff;
+  background: #b8912f;
+  transform: scale(1.05);
 }
 
+.promo-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.promo-image {
+  width: 50%;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+  transition: transform 0.5s ease;
+}
+
+.promo-image:hover {
+  transform: scale(1.03);
+}
 
 .testimonial-section {
   background: #f2f2f2;
